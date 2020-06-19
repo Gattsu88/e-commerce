@@ -15,13 +15,13 @@ class AdminsTableSeeder extends Seeder
 
         $adminRecords = [
             ['id' => 1, 'name' => 'gattsu', 'type' => 'admin', 'mobile' => '0641234567', 'email' => 'gattsu@gmail.com',
-                'password' => '$2y$10$witLyymTAm.HGwrW1Ab0ausc0FKxpSiewSf1cPoVGu5/z/fQIp.Wm ', 'image' => '', 'status' => 1],
-            ['id' => 2, 'name' => 'user2', 'type' => 'admin', 'mobile' => '0641234567', 'email' => 'user2@gmail.com',
-                'password' => '$2y$10$witLyymTAm.HGwrW1Ab0ausc0FKxpSiewSf1cPoVGu5/z/fQIp.Wm ', 'image' => '', 'status' => 1],
-            ['id' => 3, 'name' => 'user3', 'type' => 'admin', 'mobile' => '0641234567', 'email' => 'user3@gmail.com',
-                'password' => '$2y$10$witLyymTAm.HGwrW1Ab0ausc0FKxpSiewSf1cPoVGu5/z/fQIp.Wm ', 'image' => '', 'status' => 1],
+                'password' => '$2y$10$mamhAQHIPK92I9vxxTYB/eG0PVsv1hY7M34ge/MRC5aDV2upTbIee', 'image' => '', 'status' => 1],
+            ['id' => 2, 'name' => 'user2', 'type' => 'subadmin', 'mobile' => '0641234567', 'email' => 'user2@gmail.com',
+                'password' => '$2y$10$mamhAQHIPK92I9vxxTYB/eG0PVsv1hY7M34ge/MRC5aDV2upTbIee', 'image' => '', 'status' => 1],
+            ['id' => 3, 'name' => 'user3', 'type' => 'subadmin', 'mobile' => '0641234567', 'email' => 'user3@gmail.com',
+                'password' => '$2y$10$mamhAQHIPK92I9vxxTYB/eG0PVsv1hY7M34ge/MRC5aDV2upTbIee', 'image' => '', 'status' => 1],
             ['id' => 4, 'name' => 'user4', 'type' => 'admin', 'mobile' => '0641234567', 'email' => 'user4@gmail.com',
-                'password' => '$2y$10$witLyymTAm.HGwrW1Ab0ausc0FKxpSiewSf1cPoVGu5/z/fQIp.Wm ', 'image' => '', 'status' => 1],
+                'password' => '$2y$10$mamhAQHIPK92I9vxxTYB/eG0PVsv1hY7M34ge/MRC5aDV2upTbIee', 'image' => '', 'status' => 1],
         ];
 
         DB::table('admins')->insert($adminRecords);
