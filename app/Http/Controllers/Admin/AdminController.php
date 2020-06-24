@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\Admin;
 
 class AdminController extends Controller
 {
@@ -50,5 +51,12 @@ class AdminController extends Controller
         Auth::guard('admin')->logout();
 
         return redirect('/admin');
+    }
+
+    public function settings()
+    {
+        $adminDetails = Admin::where('email', Auth::guard('admin')->user()->email)->first();
+
+        return view('admin.admin_settings', compact('adminDetails'));
     }
 }
