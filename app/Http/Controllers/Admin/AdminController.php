@@ -59,4 +59,15 @@ class AdminController extends Controller
 
         return view('admin.admin_settings', compact('adminDetails'));
     }
+
+    public function checkCurrentPassword(Request $request)
+    {
+        $data = $request->all();
+
+        if(Hash::check($data['currentPassword'], Auth::guard('admin')->user()->password)) {
+            echo "true";
+        } else {
+            echo "false";
+        }
+    }
 }

@@ -75,10 +75,12 @@
 <!-- overlayScrollbars -->
 <script src="{{ url('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ url('js/adminlte/adminlte.js') }}"></script>
+<script src="{{ url('js/admin_js/adminlte.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ url('js/adminlte/pages/dashboard.js') }}"></script>
+<script src="{{ url('js/admin_js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ url('js/adminlte/demo.js') }}"></script>
+<script src="{{ url('js/admin_js/demo.js') }}"></script>
+<!-- Custom JS script -->
+<script src="{{ url('js/admin_js/admin_script.js') }}"></script>
 </body>
 </html>
