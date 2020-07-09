@@ -5,7 +5,7 @@ $(document).ready(function() {
         //alert(currentPassword);
         $.ajax({
             type:'post',
-            url:'/admin/check-current-password',
+            url:'/admin/check-admin-password',
             data:{currentPassword:currentPassword},
             success:function(resp) {
                 if(resp=="false") {

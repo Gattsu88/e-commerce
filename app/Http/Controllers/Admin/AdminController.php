@@ -60,7 +60,7 @@ class AdminController extends Controller
         return view('admin.admin_settings', compact('adminDetails'));
     }
 
-    public function checkCurrentPassword(Request $request)
+    public function checkAdminPassword(Request $request)
     {
         $data = $request->all();
 
@@ -71,7 +71,7 @@ class AdminController extends Controller
         }
     }
 
-    public function updateCurrentPassword(Request $request)
+    public function updateAdminPassword(Request $request)
     {
         if($request->isMethod('post')) {
             $data = $request->all();
@@ -90,5 +90,36 @@ class AdminController extends Controller
             }
             return redirect()->back();
         }
+    }
+
+    public function updateAdminDetails(Request $request)
+    {
+        if($request->isMethod('post')) {
+            $data = $request->all();
+
+            $rules = [
+                'name' => 'required|regex:/^[\pL\s\-]+$/u',
+                'mobile' => 'required|numeric',
+            ];
+
+            $customMessages = [
+                'name.required' => 'Name is required.',
+                'name.alpha' => 'Name is not valid.',
+                'mobile.required' => 'Mobile is required.',
+                'mobile.numeric' => 'Invalid mobile number'
+            ];
+
+            $this->validate($request, $rules, $customMessages);
+
+            Admin::where('email', Auth::guard('admin')->user()->email)->update([
+                'name' => $data['name'],
+                'mobile' => $data['mobile']
+            ]);
+
+            Session::flash('success_message', 'Admin details updated successfully.');
+            return redirect()->back();
+        }
+
+        return view('admin.update_admin_details');
     }
 }

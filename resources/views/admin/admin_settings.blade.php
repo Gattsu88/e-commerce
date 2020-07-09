@@ -52,7 +52,7 @@
                     @endif
 
                         <!-- form start -->
-                        <form role="form" method="POST" action="{{ url('/admin/update-current-password') }}" name="updateCurrentPassword" id="updateCurrentPassword">
+                        <form role="form" method="POST" action="{{ url('/admin/update-admin-password') }}" name="updateAdminPassword" id="updateAdminPassword">
                             @csrf
 
                             <div class="card-body">
