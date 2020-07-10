@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Admin;
+use Image;
 
 class AdminController extends Controller
 {
@@ -100,20 +101,42 @@ class AdminController extends Controller
             $rules = [
                 'name' => 'required|regex:/^[\pL\s\-]+$/u',
                 'mobile' => 'required|numeric',
+                'image' => 'image'
             ];
 
             $customMessages = [
                 'name.required' => 'Name is required.',
                 'name.alpha' => 'Name is not valid.',
                 'mobile.required' => 'Mobile is required.',
-                'mobile.numeric' => 'Invalid mobile number'
+                'mobile.numeric' => 'Invalid mobile number',
+                'image.image' => 'Invalid image extension.'
             ];
 
             $this->validate($request, $rules, $customMessages);
 
+            // Upload admin image
+            if($request->hasFile('image')) {
+                $imageTmp = $request->file('image');
+                if($imageTmp->isValid()) {
+                    // Get image extension
+                    $extension = $imageTmp->getClientOriginalExtension();
+                    // New image name
+                    $imageName = rand(111,99999).'.'.$extension;
+                    $imagePath = 'images/admin_images/admin_photos/'.$imageName;
+                    // Upload image
+                    Image::make($imageTmp)->save($imagePath);
+                } elseif(!empty($data['currentImage'])) {
+                    $imageName = $data['currentImage'];
+                } else {
+                    $imageName = "";
+                }
+            }
+
+            // Update admin details
             Admin::where('email', Auth::guard('admin')->user()->email)->update([
                 'name' => $data['name'],
-                'mobile' => $data['mobile']
+                'mobile' => $data['mobile'],
+                'image' => $imageName
             ]);
 
             Session::flash('success_message', 'Admin details updated successfully.');
