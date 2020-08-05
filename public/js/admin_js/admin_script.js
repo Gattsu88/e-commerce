@@ -19,3 +19,10 @@ $(document).ready(function() {
         });
     });
 });
+
+$(function () {
+    $("#sections").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+    });
+});
