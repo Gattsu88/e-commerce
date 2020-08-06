@@ -84,7 +84,7 @@
                                     <div class="form-group">
                                         <label for="image">Image</label>
                                         @if(!empty(Auth::guard('admin')->user()->image))
-                                            <a target="_blank" href="{{ url('images/admin/images/admin_photos'.Auth::guard('admin')->user()->image) }}">View Image</a>
+                                            <a target="_blank" href="{{ url('images/admin_images/admin_photos/'.Auth::guard('admin')->user()->image) }}">View Image</a>
                                             <input type="hidden" name="currentImage" value="{{ Auth::guard('admin')->user()->image }}">
                                         @endif
                                         <input type="file" class="form-control" id="image" name="image">
