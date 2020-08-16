@@ -59,8 +59,7 @@ $(document).ready(function() {
 });
 
 $(function () {
-    $("#sections").DataTable({
-        "responsive": true,
-        "autoWidth": false,
-    });
+    $("#sections").DataTable();
+	$("#categories").DataTable();
+	$('.select2').select2();
 });
