@@ -24,7 +24,18 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <div class="card card-default">
+          @if($errors->any())
+              <div class="alert alert-danger mt-2">
+                  <ul>
+                      @foreach($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endif
+		  <form action="{{ url('admin/add-edit-category') }}" method="post" name="categoryForm" id="categoryForm" enctype="multipart/form-data">
+              @csrf
+        	  <div class="card card-default">
           <div class="card-header">
             <h3 class="card-title">Add Category</h3>
 
@@ -38,11 +49,11 @@
 				  <div class="col-md-6">
 					<div class="form-group">
 						<label for="category_name">Category Name</label>
-						<input type="text" class="form-control" id="category_name" placeholder="Enter Category Name">
+						<input type="text" class="form-control" name="category_name" id="category_name" placeholder="Enter Category Name">
 					</div>
 					<div class="form-group">
 						<label>Select Category Level</label>
-						<select name="parent_id" class="form-control select2">
+						<select name="parent_id" id="parent_id" class="form-control select2" style="width: 100%;">
 							<option value="0">Main Category</option>
 						</select>
 					</div>
@@ -50,19 +61,19 @@
 				  <div class="col-md-6">
 					<div class="form-group">
 					  <label>Select Section:</label>
-					  <select name="section_id" class="form-control select2" style="width: 100%;">
+					  <select name="section_id" id="section_id" class="form-control select2" style="width: 100%;">
 						<option value="">Select</option>
 						@foreach($sections as $section)
-							<option>{{ $section->name }}</option>
+							<option value="{{ $section->id }}">{{ $section->name }}</option>
 						@endforeach
 					  </select>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputFile">Category Image</label>
+						<label for="category_image">Category Image</label>
 						<div class="input-group">
 						  <div class="custom-file">
-							<input type="file" class="custom-file-input" id="exampleInputFile">
-							<label class="custom-file-label" for="exampleInputFile">Choose file</label>
+							<input type="file" class="custom-file-input" name="category_image" id="category_image">
+							<label class="custom-file-label" for="category_image">Choose file</label>
 						  </div>
 						  <div class="input-group-append">
 							<span class="input-group-text" id="">Upload</span>
@@ -78,30 +89,30 @@
 						<input type="text" class="form-control" name="category_discount" id="category_discount" placeholder="Enter Category Discount">
 					</div>
 					<div class="form-group">
-						<label for="category_description">Category Description</label>
-						<textarea class="form-control" rows="3" placeholder="Enter Category Description"></textarea>
+						<label for="description">Category Description</label>
+						<textarea class="form-control" name="description" id="description" rows="3" placeholder="Enter Category Description"></textarea>
 					</div>
 				  </div>
 				  <div class="col-12 col-sm-6">
 					<div class="form-group">
-						<label for="">Category URL</label>
-						<input type="text" class="form-control" id="" placeholder="Enter Category URL">
+						<label for="url">Category URL</label>
+						<input type="text" class="form-control" name="url" id="url" placeholder="Enter Category URL">
 					</div>
 					<div class="form-group">
-						<label for="">Meta Title</label>
-						<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-					</div>
-				  </div>
-				  <div class="col-12 col-sm-6">
-					<div class="form-group">
-						<label for="">Meta Description</label>
-						<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+						<label for="meta_title">Meta Title</label>
+						<textarea class="form-control" name="meta_title" id="meta_title" rows="3" placeholder="Enter ..."></textarea>
 					</div>
 				  </div>
 				  <div class="col-12 col-sm-6">
 					<div class="form-group">
-						<label for="">Meta Keywords</label>
-						<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+						<label for="meta_description">Meta Description</label>
+						<textarea class="form-control" name="meta_description" id="meta_description" rows="3" placeholder="Enter ..."></textarea>
+					</div>
+				  </div>
+				  <div class="col-12 col-sm-6">
+					<div class="form-group">
+						<label for="meta_keywords">Meta Keywords</label>
+						<textarea class="form-control" name="meta_keywords" id="meta_keywords" rows="3" placeholder="Enter ..."></textarea>
 					</div>
 				  </div>
 			  </div>
@@ -109,8 +120,8 @@
 			<div class="card-footer">
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</div>
-          </div>
         </div>
+		  </form>
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
