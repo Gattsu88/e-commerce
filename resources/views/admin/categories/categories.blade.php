@@ -45,25 +45,34 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
+                                        <th>Category</th>
+                                        <th>Parent Category</th>   
+                                        <th>Section</th>                                                                             
 										<th>URL</th>
                                         <th>Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($categories as $category)
-                                            <tr>
-                                                <td>{{ $category->id }}</td>
-                                                <td>{{ $category->category_name }}</td>
-												<td>{{ $category->url }}</td>
-                                                <td>
-                                                    @if($category->status == 1)
-                                                        <a href="javascript:void(0)" id="category-{{ $category->id }}" category_id="{{ $category->id }}" class="updateCategoryStatus">Active</a>
-                                                    @else
-                                                        <a href="javascript:void(0)" id="category-{{ $category->id }}" category_id="{{ $category->id }}" class="updateCategoryStatus">Inactive</a>
-                                                    @endif
-                                                </td>
-                                            </tr>
+                                            @if(!isset($category->parentCategory->category_name))
+                                                <?php $parent_category = "Root"; ?>
+                                            @else
+                                                <?php $parent_category = $category->parentCategory->category_name; ?>
+                                            @endif
+                                                <tr>
+                                                    <td>{{ $category->id }}</td> 
+                                                    <td>{{ $category->category_name }}</td>
+                                                    <td>{{ $parent_category }}</td>
+                                                    <td>{{ $category->section->name }}</td>  
+    												<td>{{ $category->url }}</td>
+                                                    <td>
+                                                        @if($category->status == 1)
+                                                            <a href="javascript:void(0)" id="category-{{ $category->id }}" category_id="{{ $category->id }}" class="updateCategoryStatus">Active</a>
+                                                        @else
+                                                            <a href="javascript:void(0)" id="category-{{ $category->id }}" category_id="{{ $category->id }}" class="updateCategoryStatus">Inactive</a>
+                                                        @endif
+                                                    </td>
+                                                </tr>
                                         @endforeach
                                     </tbody>
                                 </table>

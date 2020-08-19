@@ -14,7 +14,7 @@ class CategoryController extends Controller
     public function categories()
     {
         Session::put('page', 'categories');
-        $categories = Category::all();
+        $categories = Category::with(['section', 'parentCategory'])->get();
 
         return view('admin.categories.categories', compact('categories'));
     }
