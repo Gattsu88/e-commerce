@@ -40,8 +40,15 @@ class CategoryController extends Controller
 		if($id == "") {
 			$title = "Add Category";
 			$category = new Category;
+            $categoryData = [];
+            $getCategories = [];
+            $message = "Category added succesfully.";
 		} else {
 			$title = "Edit Category";
+            $categoryData = Category::where('id', $id)->first();
+            $getCategories = Category::with('subcategories')->where(['parent_id' => 0, 'section_id' => $categoryData['section_id']])->get();
+            $category = Category::find($id);
+            $message = "Category updated succesfully.";
 		}
 
 		if($request->isMethod('post')) {
@@ -112,14 +119,14 @@ class CategoryController extends Controller
             $category->status = 1;
             $category->save();
 
-            Session::flash('success_message', 'Category added succesfully.');
+            Session::flash('success_message', $message);
 
             return redirect('admin/categories');
         }
 		
 		$sections = Section::all();
 		
-		return view('admin.categories.add_edit_category', compact('title', 'sections'));
+		return view('admin.categories.add_edit_category', compact('title', 'sections', 'categoryData', 'getCategories'));
 	}
 
     public function appendCategoryLevel(Request $request)

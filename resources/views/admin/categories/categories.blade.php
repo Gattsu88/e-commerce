@@ -47,9 +47,10 @@
                                         <th>ID</th>
                                         <th>Category</th>
                                         <th>Parent Category</th>   
-                                        <th>Section</th>                                                                             
+                                        <th>Section</th>    
 										<th>URL</th>
                                         <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -72,6 +73,7 @@
                                                             <a href="javascript:void(0)" id="category-{{ $category->id }}" category_id="{{ $category->id }}" class="updateCategoryStatus">Inactive</a>
                                                         @endif
                                                     </td>
+                                                    <td><a href="{{ url('admin/add-edit-category/'.$category->id) }}">Edit</a></td>
                                                 </tr>
                                         @endforeach
                                     </tbody>
