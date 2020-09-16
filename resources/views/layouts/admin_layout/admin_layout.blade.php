@@ -94,5 +94,7 @@
 <script src="{{ url('js/admin_js/demo.js') }}"></script>
 <!-- Custom JS script -->
 <script src="{{ url('js/admin_js/admin_script.js') }}"></script>
+<!-- Sweet Alert 2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 </html>

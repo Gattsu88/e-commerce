@@ -41,7 +41,7 @@
                 </button>
             </div>
           @endif
-          
+
 		  <form @if(empty($categoryData['id'])) action="{{ url('admin/add-edit-category') }}" @else action="{{ url('admin/add-edit-category/'.$categoryData['id']) }}" @endif method="post" name="categoryForm" id="categoryForm" enctype="multipart/form-data">
               @csrf
         	  <div class="card card-default">
@@ -87,7 +87,7 @@
 						</div>
                         @if(!empty($categoryData['category_image']))
                             <div>
-                                <img src="{{ asset('images/category_images/'.$categoryData['category_image']) }}" alt="" style="width: 80px; margin-top: 5px;">&nbsp;<a href="{{ url('admin/delete-category-image/'.$categoryData['id']) }}">Delete Image</a>
+                                <img src="{{ asset('images/category_images/'.$categoryData['category_image']) }}" alt="" style="width: 80px; margin-top: 5px;">&nbsp;<a href="javascript:void(0)" class="confirmDelete" record="category-image" recordid="{{ $categoryData['id'] }}" <?php /*href="{{ url('admin/delete-category-image/'.$categoryData['id']) }}" */ ?>>Delete Image</a>
                             </div>
                         @endif
 					</div>
