@@ -33,6 +33,15 @@
                   </ul>
               </div>
           @endif
+          @if(Session::has('success_message'))
+            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                {{ Session::get('success_message') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+          @endif
+          
 		  <form @if(empty($categoryData['id'])) action="{{ url('admin/add-edit-category') }}" @else action="{{ url('admin/add-edit-category/'.$categoryData['id']) }}" @endif method="post" name="categoryForm" id="categoryForm" enctype="multipart/form-data">
               @csrf
         	  <div class="card card-default">
@@ -74,10 +83,15 @@
 						  </div>
 						  <div class="input-group-append">
 							<span class="input-group-text" id="">Upload</span>
-						  </div>
+						  </div>                          
 						</div>
+                        @if(!empty($categoryData['category_image']))
+                            <div>
+                                <img src="{{ asset('images/category_images/'.$categoryData['category_image']) }}" alt="" style="width: 80px; margin-top: 5px;">&nbsp;<a href="{{ url('admin/delete-category-image/'.$categoryData['id']) }}">Delete Image</a>
+                            </div>
+                        @endif
 					</div>
-					</div>
+				</div>
               </div>
 			  <div class="row">
 				  <div class="col-12 col-sm-6">

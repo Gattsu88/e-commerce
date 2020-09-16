@@ -141,4 +141,33 @@ class CategoryController extends Controller
             return view('admin.categories.append_categories_level', compact('categories'));
         }
     }
+
+    public function deleteCategoryImage($id)
+    {
+        $categoryImage = Category::select('category_image')->where('id', $id)->first();
+
+        $category_image_path = 'images/category_images/';
+        if(file_exists($category_image_path.$categoryImage->category_image)) {
+            unlink($category_image_path.$categoryImage->category_image);
+        }
+
+        Category::where('id', $id)->update(['category_image' => '']);
+
+        $message = 'Category image has been deleted.';
+
+        Session::flash('success_message', $message);
+
+        return redirect()->back();
+    }
+
+    public function deleteCategory($id)
+    {
+        $category = Category::where('id', $id)->delete();
+
+        $message = 'Category has been deleted.';
+
+        Session::flash('success_message', $message);
+
+        return redirect()->back();
+    }
 }
