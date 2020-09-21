@@ -59,6 +59,26 @@ $(document).ready(function() {
        });
     });
 
+  // Update product status
+  $(".updateProductStatus").click(function() {
+       var status = $(this).text();
+       var product_id = $(this).attr("product_id");
+       $.ajax({
+           type:'post',
+           url:'/admin/update-product-status',
+           data:{status:status,product_id:product_id},
+           success:function(resp) {
+            if(resp['status'] == 0) {
+                $("#product-" + product_id).html("<a href=\"javascript:void(0)\" class=\"updateProductStatus\">Inactive</a>");
+            } else if(resp['status'] == 1) {
+                $("#product-" + product_id).html("<a href=\"javascript:void(0)\" class=\"updateProductStatus\">Active</a>");
+           }
+           }, error:function() {
+               alert("Error.");
+           }
+       });
+    });
+
   // Append categories level
   $("#section_id").change(function() {
     var section_id = $(this).val();
@@ -111,5 +131,6 @@ $(document).ready(function() {
 $(function () {
   $("#sections").DataTable();
 	$("#categories").DataTable();
+  $("#products").DataTable();
 	$('.select2').select2();
 });

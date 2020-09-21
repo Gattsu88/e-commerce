@@ -4,7 +4,7 @@
     <a href="#" class="brand-link">
         <img src="{{ url('images/admin_images/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">E-Commerce</span>
     </a>
 
     <!-- Sidebar -->
@@ -79,7 +79,7 @@
                 </li>
 
                 <!-- Catalogues -->
-                @if(Session::get('page') == "sections" || Session::get('page') == "categories")
+                @if(Session::get('page') == "sections" || Session::get('page') == "categories" || Session::get('page') == "products")
                     <?php $active = "active";$menu = "menu-open"; ?>
                 @else
                     <?php $active = "";$menu = ""; ?>
@@ -94,7 +94,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         @if(Session::get('page') == "sections")
-                            <?php $active = "active" ?>
+                            <?php $active = "active"; ?>
                         @else
                             <?php $active = ""; ?>
                         @endif
@@ -105,7 +105,7 @@
                             </a>
                         </li>
                         @if(Session::get('page') == "categories")
-                            <?php $active = "active" ?>
+                            <?php $active = "active"; ?>
                         @else
                             <?php $active = ""; ?>
                         @endif
@@ -113,6 +113,17 @@
                             <a href="{{ url('admin/categories') }}" class="nav-link {{ $active }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Categories</p>
+                            </a>
+                        </li>
+                        @if(Session::get('page') == "products")
+                            <?php $active = "active"; ?>
+                        @else
+                            <?php $active = ""; ?>
+                        @endif
+                        <li class="nav-item">
+                            <a href="{{ url('admin/products') }}" class="nav-link {{ $active }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Products</p>
                             </a>
                         </li>
                     </ul>
