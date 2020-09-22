@@ -12,7 +12,11 @@ class ProductController extends Controller
     public function products()
     {
         Session::put('page', 'products');
-        $products = Product::all();
+        $products = Product::with(['category' => function($query) {
+            $query->select('id', 'category_name');
+        }, 'section' => function($query) {
+            $query->select('id', 'name');
+        }])->get();
 
         return view('admin.products.products', compact('products'));
     }
@@ -31,6 +35,24 @@ class ProductController extends Controller
 
             return response()->json(['status' => $status, 'product_id' => $data['product_id']]);
         }
+    }
+
+    public function addEditProduct(Request $request, $id = null)
+    {
+        if($id == "") {
+            $title = "Add Product";
+        } else {
+            $title = "Edit Product";
+        }
+        
+        // Filter Arrays
+        $fabricArray = ['Cotton', 'Polyester', 'Wool'];
+        $sleeveArray = ['Full Sleeve', 'Half Sleeve', 'Short Sleeve', 'Sleevless'];
+        $patternArray = ['Checked', 'Plain', 'Printed', 'Self', 'Solid'];
+        $fitArray = ['Regular', 'Slim', 'Wool'];
+        $occasionArray = ['Casual', 'Formal'];
+
+        return view('admin.products.add_edit_product', compact('title', 'fabricArray', 'sleeveArray', 'patternArray', 'fitArray', 'occasionArray'));
     }
 
     public function deleteProduct($id)
