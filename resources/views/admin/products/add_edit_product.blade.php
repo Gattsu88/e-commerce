@@ -110,8 +110,9 @@
 						  </div>
 						  <div class="input-group-append">
 							<span class="input-group-text" id="">Upload</span>
-						  </div>                          
+						  </div>                                     
 						</div>
+            <div>Recommended Image Size: Width:1040px, Height:1200px</div>
 					</div>
 				</div>
               </div>
