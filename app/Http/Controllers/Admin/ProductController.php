@@ -52,7 +52,6 @@ class ProductController extends Controller
 
         if($request->isMethod('post')) {
             $data = $request->all();
-            //echo "<pre>";print_r($data);die;
 
             $rules = [
                 'category_id' => 'required',
@@ -170,7 +169,7 @@ class ProductController extends Controller
                     $videoName = $video_name.'-'.rand().'.'.$extension;
                     $video_path = 'videos/product_videos/';
                     $video_tmp->move($video_path, $videoName);
-                    // Save VIdeo in products table
+                    // Save Product Video in products table
                     $product->product_video = $videoName;
                 }
             }
@@ -184,8 +183,6 @@ class ProductController extends Controller
             $product->product_color = $data['product_color'];
             $product->product_discount = $data['product_discount'];
             $product->product_weight = $data['product_weight'];
-            $product->product_video = $data['product_video'];
-            $product->main_image = $data['main_image'];
             $product->description = $data['description'];
             $product->wash_care = $data['wash_care'];
             $product->fabric = $data['fabric'];
