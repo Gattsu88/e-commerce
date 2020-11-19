@@ -45,9 +45,13 @@ class ProductController extends Controller
         if($id == "") {
             $title = "Add Product";
             $product = new Product;
+            $productData = [];
             $message = "Product added succesfully.";
         } else {
             $title = "Edit Product";
+            $productData = Product::find($id);
+            $product = Product::find($id);
+            $message = "Product updated succesfully.";
         }
 
         if($request->isMethod('post')) {
@@ -76,9 +80,9 @@ class ProductController extends Controller
             $this->validate($request, $rules, $customMessages);
 
             if(empty($data['is_featured'])) {
-                $is_featured = 'No';
+                $is_featured = "No";
             } else {
-                $is_featured = 'Yes';
+                $is_featured = "Yes";
             }            
 
             if(empty($data['main_image'])) {
@@ -212,7 +216,7 @@ class ProductController extends Controller
         // Section with categories and subcategories
         $categories = Section::with('categories')->get();
 
-        return view('admin.products.add_edit_product', compact('title', 'fabricArray', 'sleeveArray', 'patternArray', 'fitArray', 'occasionArray', 'categories'));
+        return view('admin.products.add_edit_product', compact('title', 'fabricArray', 'sleeveArray', 'patternArray', 'fitArray', 'occasionArray', 'categories', 'productData'));
     }
 
     public function deleteProduct($id)
