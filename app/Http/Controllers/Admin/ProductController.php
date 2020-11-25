@@ -219,6 +219,52 @@ class ProductController extends Controller
         return view('admin.products.add_edit_product', compact('title', 'fabricArray', 'sleeveArray', 'patternArray', 'fitArray', 'occasionArray', 'categories', 'productData'));
     }
 
+    public function deleteProductImage($id)
+    {
+        $productImage = Product::select('main_image')->where('id', $id)->first();
+
+        $small_image_path = 'images/product_images/small/';
+        $medium_image_path = 'images/product_images/medium/';
+        $large_image_path = 'images/product_images/large/';
+
+        if(file_exists($small_image_path.$productImage->main_image)) {
+            unlink($small_image_path.$productImage->main_image);
+        }
+        if(file_exists($medium_image_path.$productImage->main_image)) {
+            unlink($medium_image_path.$productImage->main_image);
+        }
+        if(file_exists($large_image_path.$productImage->main_image)) {
+            unlink($large_image_path.$productImage->main_image);
+        }
+
+        Product::where('id', $id)->update(['main_image' => '']);
+
+        $message = 'Product image has been deleted.';
+
+        Session::flash('success_message', $message);
+
+        return redirect()->back();
+    }
+
+    public function deleteProductVideo($id)
+    {
+        $productVideo = Product::select('product_video')->where('id', $id)->first();
+
+        $product_video_path = 'videos/product_videos/';
+
+        if(file_exists($product_video_path.$productVideo->product_video)) {
+            unlink($product_video_path.$productVideo->product_video);
+        }
+
+        Product::where('id', $id)->update(['product_video' => '']);
+
+        $message = 'Product video has been deleted.';
+
+        Session::flash('success_message', $message);
+
+        return redirect()->back();
+    }
+
     public function deleteProduct($id)
     {
         $product = Product::where('id', $id)->delete();

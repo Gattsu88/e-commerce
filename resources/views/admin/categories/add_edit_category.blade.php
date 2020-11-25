@@ -87,7 +87,7 @@
 						</div>
                         @if(!empty($categoryData['category_image']))
                             <div>
-                                <img src="{{ asset('images/category_images/'.$categoryData['category_image']) }}" alt="" style="width: 80px; margin-top: 5px;">&nbsp;<a href="javascript:void(0)" class="confirmDelete" record="category-image" recordid="{{ $categoryData['id'] }}" <?php /*href="{{ url('admin/delete-category-image/'.$categoryData['id']) }}" */ ?>>Delete Image</a>
+                                <img src="{{ asset('images/category_images/'.$categoryData['category_image']) }}" alt="" style="width: 80px; margin-top: 5px;">&nbsp;<a href="javascript:void(0)" class="confirmDelete" record="category-image" recordid="{{ $categoryData['id'] }}">Delete Image</a>
                             </div>
                         @endif
 					</div>
