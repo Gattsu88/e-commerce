@@ -46,5 +46,7 @@ Route::prefix('/admin')->namespace('Admin')->group(function() {
         Route::get('delete-product/{id}', 'ProductController@deleteProduct');
         Route::get('delete-product-image/{id}', 'ProductController@deleteProductImage');
         Route::get('delete-product-video/{id}', 'ProductController@deleteProductVideo');
+
+        Route::match(['get', 'post'], 'add-attributes/{id}', 'ProductController@addAttributes');
     });
 });

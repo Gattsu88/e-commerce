@@ -275,4 +275,16 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
+
+    public function addAttributes(Request $request, $id)
+    {   
+        if($request->isMethod('post')) {
+            $data = $request->all();
+        }
+
+        $title = "Product Attributes"; 
+        $productData = Product::find($id);
+
+        return view('admin.products.add_attributes', compact('title', 'productData'));
+    }
 }

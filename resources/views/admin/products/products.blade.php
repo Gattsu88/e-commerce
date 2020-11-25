@@ -41,7 +41,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="products" class="table table-bordered table-striped">
+                                <table id="products" class="table table-bordered">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
@@ -80,8 +80,9 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{ url('admin/add-edit-product/'.$product->id) }}">Edit</a>&nbsp;
-                                                    <a href="javascript:void(0)" class="confirmDelete" record="product" recordid="{{ $product->id }}" <?php /* href="{{ url('admin/delete-product/'.$product->id) }}" */ ?>>Delete</a>
+                                                    <a title="Add/Edit Attributes" href="{{ url('admin/add-attributes/'.$product->id) }}"><i class="fas fa-plus"></i></a>&nbsp;
+                                                    <a title="Edit Product" href="{{ url('admin/add-edit-product/'.$product->id) }}"><i class="fas fa-edit"></i></a>&nbsp;
+                                                    <a title="Remove Product" href="javascript:void(0)" class="confirmDelete" record="product" recordid="{{ $product->id }}"><i class="fas fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

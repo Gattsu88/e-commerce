@@ -39,8 +39,8 @@ $(document).ready(function() {
        });
     });
 	
-  // Update category status
-	$(".updateCategoryStatus").click(function() {
+    // Update category status
+	  $(".updateCategoryStatus").click(function() {
        var status = $(this).text();
        var category_id = $(this).attr("category_id");
        $.ajax({
@@ -59,40 +59,40 @@ $(document).ready(function() {
        });
     });
 
-  // Update product status
-  $(".updateProductStatus").click(function() {
-       var status = $(this).text();
-       var product_id = $(this).attr("product_id");
-       $.ajax({
-           type:'post',
-           url:'/admin/update-product-status',
-           data:{status:status,product_id:product_id},
-           success:function(resp) {
-            if(resp['status'] == 0) {
-                $("#product-" + product_id).html("<a href=\"javascript:void(0)\" class=\"updateProductStatus\">Inactive</a>");
-            } else if(resp['status'] == 1) {
-                $("#product-" + product_id).html("<a href=\"javascript:void(0)\" class=\"updateProductStatus\">Active</a>");
-           }
-           }, error:function() {
-               alert("Error.");
-           }
-       });
-    });
+    // Update product status
+    $(".updateProductStatus").click(function() {
+         var status = $(this).text();
+         var product_id = $(this).attr("product_id");
+         $.ajax({
+             type:'post',
+             url:'/admin/update-product-status',
+             data:{status:status,product_id:product_id},
+             success:function(resp) {
+              if(resp['status'] == 0) {
+                  $("#product-" + product_id).html("<a href=\"javascript:void(0)\" class=\"updateProductStatus\">Inactive</a>");
+              } else if(resp['status'] == 1) {
+                  $("#product-" + product_id).html("<a href=\"javascript:void(0)\" class=\"updateProductStatus\">Active</a>");
+             }
+             }, error:function() {
+                 alert("Error.");
+             }
+         });
+      });
 
-  // Append categories level
-  $("#section_id").change(function() {
-    var section_id = $(this).val();
-    $.ajax({
-      type:'post',
-      url:'/admin/append-categories-level',
-      data:{section_id:section_id},
-      success:function(resp) {
-        $("#appendCategoriesLevel").html(resp);
-      }, error:function() {
-        alert('Error.');
-      }
-    });
-  });
+      // Append categories level
+      $("#section_id").change(function() {
+        var section_id = $(this).val();
+        $.ajax({
+          type:'post',
+          url:'/admin/append-categories-level',
+          data:{section_id:section_id},
+          success:function(resp) {
+            $("#appendCategoriesLevel").html(resp);
+          }, error:function() {
+            alert('Error.');
+          }
+        });
+      });
 
   // Confirm deletion of record
 
@@ -124,8 +124,30 @@ $(document).ready(function() {
         window.location.href = "/admin/delete-" + record + "/" +recordid;
       }
     });
-
   });
+
+  // Products Attributes Add/Remove script 
+  var maxField = 10; //Input fields increment limitation
+    var addButton = $('.add_button'); //Add button selector
+    var wrapper = $('.field_wrapper'); //Input field wrapper
+    var fieldHTML = '<div><div style="height:10px;"></div><input type="text" name="size[]" placeholder="Size" style="width:120px;">&nbsp;<input type="text" name="sku[]" placeholder="SKU" style="width:120px;">&nbsp;<input type="text" name="price[]" placeholder="Price" style="width:120px;">&nbsp;<input type="text" name="stock[]" placeholder="Stock" style="width:120px;"><a href="javascript:void(0);" class="remove_button">&nbsp;Remove</a></div>'; //New input field html 
+    var x = 1; //Initial field counter is 1
+    
+    //Once add button is clicked
+    $(addButton).click(function(){
+        //Check maximum number of input fields
+        if(x < maxField){ 
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); //Add field html
+        }
+    });
+    
+    //Once remove button is clicked
+    $(wrapper).on('click', '.remove_button', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
 });
 
 $(function () {
