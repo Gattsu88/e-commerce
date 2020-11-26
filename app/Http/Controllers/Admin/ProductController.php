@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Section;
 use App\Category;
+use App\ProductsAttribute;
 use Illuminate\Support\Facades\Session;
 use Image;
 
@@ -280,10 +281,41 @@ class ProductController extends Controller
     {   
         if($request->isMethod('post')) {
             $data = $request->all();
+            foreach($data['sku'] as $key => $value) {
+                if(!empty($value)) {
+
+                    $attrCountSKU = ProductsAttribute::where(['sku' => $value])->count();
+                    if($attrCountSKU > 0) {
+                        $message = 'SKU already exists.';
+                        Session::flash('error_message', $message);
+                        return redirect()->back();
+                    }
+
+                    $attrCountSize = ProductsAttribute::where(['product_id' => $id, 'size' => $data['size'][$key]])->count();
+                    if($attrCountSize > 0) {
+                        $message = 'Size already exists.';
+                        Session::flash('error_message', $message);
+                        return redirect()->back();
+                    }
+
+                    $attribute = new ProductsAttribute;
+                    $attribute->product_id = $id;
+                    $attribute->sku = $value;
+                    $attribute->size = $data['size'][$key];
+                    $attribute->price = $data['price'][$key];
+                    $attribute->stock = $data['stock'][$key];
+                    $attribute->status = 1;
+                    $attribute->save();
+                }
+            }
+
+            $message = 'Product attributes has been added succesfully.';
+
+            Session::flash('success_message', $message);
         }
 
         $title = "Product Attributes"; 
-        $productData = Product::find($id);
+        $productData = Product::select('id', 'product_name', 'product_code', 'product_color', 'main_image')->with('attributes')->find($id);
 
         return view('admin.products.add_attributes', compact('title', 'productData'));
     }
