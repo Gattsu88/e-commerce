@@ -79,6 +79,26 @@ $(document).ready(function() {
          });
       });
 
+    // Update attribute status
+    $(".updateAttributeStatus").click(function() {
+         var status = $(this).text();
+         var attribute_id = $(this).attr("attribute_id");
+         $.ajax({
+             type:'post',
+             url:'/admin/update-attribute-status',
+             data:{status:status,attribute_id:attribute_id},
+             success:function(resp) {
+              if(resp['status'] == 0) {
+                  $("#attribute-" + attribute_id).html("Inactive");
+              } else if(resp['status'] == 1) {
+                  $("#attribute-" + attribute_id).html("Active");
+             }
+             }, error:function() {
+                 alert("Error.");
+             }
+         });
+      });
+
       // Append categories level
       $("#section_id").change(function() {
         var section_id = $(this).val();

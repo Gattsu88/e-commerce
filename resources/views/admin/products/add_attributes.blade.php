@@ -50,62 +50,66 @@
                 </div>
             @endif
 
-            <form method="post" name="attributeForm" id="attributeForm" action="{{ url('admin/add-attributes/'.$productData['id']) }}">
+            <form method="post" name="addAttributeForm" id="addAttributeForm" action="{{ url('admin/add-attributes/'.$productData['id']) }}">
 
-            @csrf
+                @csrf
 
-            <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title">{{ $title }}</h3>
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">{{ $title }}</h3>
 
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">                    
-                            <div class="form-group">
-                                <label for="product_name">Product Name:</label> &nbsp; {{ $productData['product_name'] }}
-                            </div>
-                            <div class="form-group">
-                                <label for="product_code">Product Code:</label> &nbsp; {{ $productData['product_code'] }}
-                            </div>
-                            <div class="form-group">
-                                <label for="product_color">Product Color:</label> &nbsp; {{ $productData['product_color'] }}
-                            </div>
-                        </div>               
-                        <div class="col-md-6">               
-                            <div class="form-group">
-                                <img src="{{ asset('images/product_images/small/'.$productData['main_image']) }}" alt="" style="width: 120px; margin-top: 5px;">
-                            </div>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
                         </div>
-                        <div class="col-md-6">               
-                            <div class="form-group">
-                                <div class="field_wrapper">
-                                    <div>
-                                        <input style="width: 120px;" type="text" name="size[]" id="size" placeholder="Size" value="" required>
-                                        <input style="width: 120px;" type="text" name="sku[]" id="sku" placeholder="SKU" value="" required>
-                                        <input style="width: 120px;" type="number" name="price[]" id="price" placeholder="Price" value="" required>
-                                        <input style="width: 120px;" type="number" name="stock[]" id="stock" placeholder="Stock" value="" required>
-                                        <a href="javascript:void(0);" class="add_button" title="Add field">Add</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">                    
+                                <div class="form-group">
+                                    <label for="product_name">Product Name:</label> &nbsp; {{ $productData['product_name'] }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="product_code">Product Code:</label> &nbsp; {{ $productData['product_code'] }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="product_color">Product Color:</label> &nbsp; {{ $productData['product_color'] }}
+                                </div>
+                            </div>               
+                            <div class="col-md-6">               
+                                <div class="form-group">
+                                    <img src="{{ asset('images/product_images/small/'.$productData['main_image']) }}" alt="" style="width: 120px; margin-top: 5px;">
+                                </div>
+                            </div>
+                            <div class="col-md-6">               
+                                <div class="form-group">
+                                    <div class="field_wrapper">
+                                        <div>
+                                            <input style="width: 120px;" type="text" name="size[]" id="size" placeholder="Size" value="" required>
+                                            <input style="width: 120px;" type="text" name="sku[]" id="sku" placeholder="SKU" value="" required>
+                                            <input style="width: 120px;" type="number" name="price[]" id="price" placeholder="Price" value="" required>
+                                            <input style="width: 120px;" type="number" name="stock[]" id="stock" placeholder="Stock" value="" required>
+                                            <a href="javascript:void(0);" class="add_button" title="Add field">Add</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div><!-- .card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Add Attributes</button>
                     </div>
-                </div><!-- .card-body -->
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div><!-- card-default -->
+                </div><!-- card-default -->
             </form>
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Added Product Attributes</h3>
-                </div>
-                <!-- /.card-header -->
+
+            <form action="{{ url('admin/edit-attributes/'.$productData->id) }}" name="editAttributeForm" id="editAttributeForm" method="post">
+
+                @csrf
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Added Product Attributes</h3>
+                    </div><!-- /.card-header -->                
                 <div class="card-body">
                     <table id="products" class="table table-bordered">
                         <thead>
@@ -114,35 +118,44 @@
                             <th>Size</th>
                             <th>SKU</th>    
                             <th>Price</th>
-                            <th>Stock</th>      
+                            <th>Stock</th>
+                            <th>Status</th>     
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
                             @foreach($productData['attributes'] as $attribute)
+                                <input style="display: none;" type="text" name="attrId[]" value="{{ $attribute->id }}">
                                 <tr>
                                     <td>{{ $attribute->id }}</td> 
                                     <td>{{ $attribute->size }}</td>
                                     <td>{{ $attribute->sku }}</td>  
-                                    <td>{{ $attribute->price }}</td>
-                                    <td>{{ $attribute->stock }}</td>
+                                    <td><input type="number" name="price[]" value="{{ $attribute->price }}" required></td>
+                                    <td><input type="number" name="stock[]" value="{{ $attribute->stock }}" required></td>
                                     <td>
-                                        {{--<a title="Add/Edit Attributes" href="{{ url('admin/add-attributes/'.$product->id) }}"><i class="fas fa-plus"></i></a>&nbsp;
-                                        <a title="Edit Product" href="{{ url('admin/add-edit-product/'.$product->id) }}"><i class="fas fa-edit"></i></a>&nbsp;
-                                        <a title="Remove Product" href="javascript:void(0)" class="confirmDelete" record="product" recordid="{{ $product->id }}"><i class="fas fa-trash"></i></a>--}}
+                                        @if($attribute->status == 1)
+                                            <a href="javascript:void(0)" id="attribute-{{ $attribute->id }}" attribute_id="{{ $attribute->id }}" class="updateAttributeStatus">Active</a>
+                                        @else
+                                            <a href="javascript:void(0)" id="attribute-{{ $attribute->id }}" attribute_id="{{ $attribute->id }}" class="updateAttributeStatus">Inactive</a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a title="Remove Attribute" href="javascript:void(0)" class="confirmDelete" record="attribute" recordid="{{ $attribute->id }}"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+                </div><!-- /.card-body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Update Attributes</button>
                 </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+            </div><!-- /.card --> 
+                
+            </form>
+
         </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+    </section><!-- /.content -->    
+</div><!-- /.content-wrapper -->
 
 @endsection
