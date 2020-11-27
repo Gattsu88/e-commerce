@@ -8,6 +8,7 @@ use App\Product;
 use App\Section;
 use App\Category;
 use App\ProductsAttribute;
+use App\ProductsImage;
 use Illuminate\Support\Facades\Session;
 use Image;
 
@@ -47,12 +48,12 @@ class ProductController extends Controller
             $title = "Add Product";
             $product = new Product;
             $productData = [];
-            $message = "Product added succesfully.";
+            $message = "Product added successfully.";
         } else {
             $title = "Edit Product";
             $productData = Product::find($id);
             $product = Product::find($id);
-            $message = "Product updated succesfully.";
+            $message = "Product updated successfully.";
         }
 
         if($request->isMethod('post')) {
@@ -309,7 +310,7 @@ class ProductController extends Controller
                 }
             }
 
-            $message = 'Product attributes has been added succesfully.';
+            $message = 'Product attributes has been added successfully.';
 
             Session::flash('success_message', $message);
         }
@@ -331,7 +332,7 @@ class ProductController extends Controller
                 }
             }
 
-            $message = 'Product attributes has been updated succesfully.';
+            $message = 'Product attributes has been updated successfully.';
             Session::flash('success_message', $message);
             return redirect()->back();
         }
@@ -358,6 +359,88 @@ class ProductController extends Controller
         ProductsAttribute::where('id', $id)->delete();
 
         $message = 'Product attribute has been deleted.';
+
+        Session::flash('success_message', $message);
+
+        return redirect()->back();
+    }
+
+    public function addImages(Request $request, $id)
+    {
+        if($request->isMethod('post')) {
+            $data = $request->all();
+            if($request->hasFile('images')) {
+                $images = $request->file('images');
+                foreach($images as $key => $image) {
+                    $productImage = new ProductsImage;
+                    $image_tmp = Image::make($image);
+                    $extension = $image->getClientOriginalExtension();
+                    $imageName = rand(1111, 999999).time().".".$extension;
+                    // Set paths
+                    $large_image_path = 'images/product_images/large/'.$imageName;
+                    $medium_image_path = 'images/product_images/medium/'.$imageName;
+                    $small_image_path = 'images/product_images/small/'.$imageName;
+                    // Upload large image
+                    Image::make($image_tmp)->save($large_image_path); // W:1040, H:1200
+                    // Upload medium and small images after resize
+                    Image::make($image_tmp)->resize(520, 600)->save($medium_image_path);
+                    Image::make($image_tmp)->resize(260, 300)->save($small_image_path);
+                    // Save Product Images in products table
+                    $productImage->image = $imageName;
+                    $productImage->product_id = $id;
+                    $productImage->status = 1;
+                    $productImage->save();
+                }
+
+                $message = 'Product images has been added successfully.';
+                Session::flash('success_message', $message);
+                return redirect()->back();                
+            }
+
+        }
+        $title = "Product Images";
+        $productData = Product::with('images')->select('id', 'product_name', 'product_code', 'product_color', 'main_image')->find($id);
+
+        return view('admin.products.add_images', compact('title', 'productData'));
+    }
+
+    public function updateImageStatus(Request $request)
+    {
+        if($request->ajax()) {
+            $data = $request->all();
+            if($data['status'] == "Active") {
+                $status = 0;
+            } else {
+                $status = 1;
+            }
+
+            ProductsImage::where('id', $data['image_id'])->update(['status' => $status]);
+
+            return response()->json(['status' => $status, 'image_id' => $data['image_id']]);
+        }
+    }
+
+    public function deleteImage($id)
+    {
+        $productImage = ProductsImage::select('image')->where('id', $id)->first();
+
+        $small_image_path = 'images/product_images/small/';
+        $medium_image_path = 'images/product_images/medium/';
+        $large_image_path = 'images/product_images/large/';
+
+        if(file_exists($small_image_path.$productImage->image)) {
+            unlink($small_image_path.$productImage->image);
+        }
+        if(file_exists($medium_image_path.$productImage->image)) {
+            unlink($medium_image_path.$productImage->image);
+        }
+        if(file_exists($large_image_path.$productImage->image)) {
+            unlink($large_image_path.$productImage->image);
+        }
+
+        ProductsImage::where('id', $id)->delete();
+
+        $message = 'Product image has been deleted successfully.';
 
         Session::flash('success_message', $message);
 

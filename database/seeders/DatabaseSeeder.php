@@ -6,6 +6,7 @@ use App\Section;
 use App\Category;
 use App\Product;
 use App\ProductsAttribute;
+use App\ProductsImage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -53,15 +54,17 @@ class DatabaseSeeder extends Seeder
         \App\Product::factory()->create(
             ['id' => 1, 'category_id' => 1, 'section_id' => 1, 'product_name' => 'Green Casual T-Shirt', 'product_code' => 'GCT01', 
             'product_color' => 'Green', 'product_price' => '1600', 'product_discount' => 10, 'product_weight' => 200, 'product_video' => '', 
-            'main_image' => '', 'description' => 'Test product', 'wash_care' => '', 'fabric' => '', 'pattern' => '', 'sleeve' => '', 'fit' => '', 
-            'occasion' => '', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'is_featured' => 'No', 'status' => 1
+            'main_image' => 'green-t-shirt -1.jpg-68467.jpg', 'description' => 'Test product', 'wash_care' => '', 'fabric' => '', 
+            'pattern' => '', 'sleeve' => '', 'fit' => '', 'occasion' => '', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 
+            'is_featured' => 'No', 'status' => 1
             ]
         );
         \App\Product::factory()->create(
             ['id' => 2, 'category_id' => 2, 'section_id' => 1, 'product_name' => 'Blue Formal T-Shirt', 'product_code' => 'BFT01', 
             'product_color' => 'Blue', 'product_price' => '1300', 'product_discount' => 10, 'product_weight' => 250, 'product_video' => '', 
-            'main_image' => '', 'description' => 'Test product', 'wash_care' => '', 'fabric' => '', 'pattern' => '', 'sleeve' => '', 'fit' => '', 
-            'occasion' => '', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'is_featured' => 'Yes', 'status' => 1
+            'main_image' => 'blue-t-shirt -1.jpg-59696.jpg', 'description' => 'Test product', 'wash_care' => '', 'fabric' => '', 
+            'pattern' => '', 'sleeve' => '', 'fit' => '', 'occasion' => '', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 
+            'is_featured' => 'Yes', 'status' => 1
             ]
         );
 
@@ -73,6 +76,22 @@ class DatabaseSeeder extends Seeder
         );
         \App\ProductsAttribute::factory()->create(
             ['id' => 3, 'product_id' => 1, 'size' => 'Large', 'price' => 1400, 'stock' => 10, 'sku' => 'GCT01-L', 'status' => 1]
+        );
+
+        \App\ProductsImage::factory()->create(
+            ['id' => 1, 'product_id' => 1, 'image' => '3572161606499567.jpg', 'status' => 1]
+        );
+        \App\ProductsImage::factory()->create(
+            ['id' => 2, 'product_id' => 1, 'image' => '9069481606499567.jpg', 'status' => 1]
+        );
+        \App\ProductsImage::factory()->create(
+            ['id' => 3, 'product_id' => 2, 'image' => '5111651606499607.jpg', 'status' => 1]
+        );
+        \App\ProductsImage::factory()->create(
+            ['id' => 4, 'product_id' => 2, 'image' => '2372301606499607.jpg', 'status' => 1]
+        );
+        \App\ProductsImage::factory()->create(
+            ['id' => 5, 'product_id' => 2, 'image' => '4651821606499607.jpg', 'status' => 1]
         );
     }
 }
