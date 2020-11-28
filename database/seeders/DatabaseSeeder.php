@@ -41,7 +41,23 @@ class DatabaseSeeder extends Seeder
             ['id' => 2, 'name' => 'Women', 'status' => 1]
         );
         \App\Section::factory()->create(
-            ['id' => 3, 'name' => 'Kids', 'status' => 0]
+            ['id' => 3, 'name' => 'Kids', 'status' => 1]
+        );
+
+        \App\Brand::factory()->create(
+            ['id' => 1, 'name' => 'Everlane', 'status' => 1]
+        );
+        \App\Brand::factory()->create(
+            ['id' => 2, 'name' => 'James Perse', 'status' => 1]
+        );
+        \App\Brand::factory()->create(
+            ['id' => 3, 'name' => 'Carhartt', 'status' => 0]
+        );
+        \App\Brand::factory()->create(
+            ['id' => 4, 'name' => 'Brooklinen', 'status' => 0]
+        );
+        \App\Brand::factory()->create(
+            ['id' => 5, 'name' => 'Uniqlo', 'status' => 0]
         );
 
         \App\Category::factory()->create(
@@ -49,10 +65,10 @@ class DatabaseSeeder extends Seeder
         );
         \App\Category::factory()->create(
             ['id' => 2, 'parent_id' => 1, 'section_id' => 1, 'category_name' => 'Casual T-Shirts', 'category_image' => '', 'category_discount' => 0, 'description' => '', 'url' => 'casual-t-shirts', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 1]
-        );
+        );        
 
         \App\Product::factory()->create(
-            ['id' => 1, 'category_id' => 1, 'section_id' => 1, 'product_name' => 'Green Casual T-Shirt', 'product_code' => 'GCT01', 
+            ['id' => 1, 'section_id' => 1, 'brand_id' => 1,'category_id' => 1, 'product_name' => 'Green Casual T-Shirt', 'product_code' => 'GCT01', 
             'product_color' => 'Green', 'product_price' => '1600', 'product_discount' => 10, 'product_weight' => 200, 'product_video' => '', 
             'main_image' => 'green-t-shirt -1.jpg-68467.jpg', 'description' => 'Test product', 'wash_care' => '', 'fabric' => '', 
             'pattern' => '', 'sleeve' => '', 'fit' => '', 'occasion' => '', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 
@@ -60,7 +76,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
         \App\Product::factory()->create(
-            ['id' => 2, 'category_id' => 2, 'section_id' => 1, 'product_name' => 'Blue Formal T-Shirt', 'product_code' => 'BFT01', 
+            ['id' => 2, 'section_id' => 1, 'brand_id' => 2, 'category_id' => 2, 'product_name' => 'Blue Formal T-Shirt', 'product_code' => 'BFT01', 
             'product_color' => 'Blue', 'product_price' => '1300', 'product_discount' => 10, 'product_weight' => 250, 'product_video' => '', 
             'main_image' => 'blue-t-shirt -1.jpg-59696.jpg', 'description' => 'Test product', 'wash_care' => '', 'fabric' => '', 
             'pattern' => '', 'sleeve' => '', 'fit' => '', 'occasion' => '', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 
@@ -76,6 +92,18 @@ class DatabaseSeeder extends Seeder
         );
         \App\ProductsAttribute::factory()->create(
             ['id' => 3, 'product_id' => 1, 'size' => 'Large', 'price' => 1400, 'stock' => 10, 'sku' => 'GCT01-L', 'status' => 1]
+        );
+        \App\ProductsAttribute::factory()->create(
+            ['id' => 4, 'product_id' => 2, 'size' => 'Small', 'price' => 1250, 'stock' => 10, 'sku' => 'BFT01-S', 'status' => 1]
+        );
+        \App\ProductsAttribute::factory()->create(
+            ['id' => 5, 'product_id' => 2, 'size' => 'Medium', 'price' => 1400, 'stock' => 25, 'sku' => 'BFT01-M', 'status' => 1]
+        );
+        \App\ProductsAttribute::factory()->create(
+            ['id' => 6, 'product_id' => 2, 'size' => 'Large', 'price' => 1550, 'stock' => 20, 'sku' => 'BFT01-L', 'status' => 1]
+        );
+        \App\ProductsAttribute::factory()->create(
+            ['id' => 7, 'product_id' => 2, 'size' => 'Extra Large', 'price' => 1700, 'stock' => 15, 'sku' => 'BFT01-XL', 'status' => 1]
         );
 
         \App\ProductsImage::factory()->create(

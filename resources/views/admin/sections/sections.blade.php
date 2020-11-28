@@ -48,28 +48,21 @@
                                                 <td>{{ $section->name }}</td>
                                                 <td>
                                                     @if($section->status == 1)
-                                                        <a href="javascript:void(0)" id="section-{{ $section->id }}" section_id="{{ $section->id }}" class="updateSectionStatus">Active</a>
+                                                        <a href="javascript:void(0)" id="section-{{ $section->id }}" section_id="{{ $section->id }}" class="updateSectionStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
                                                     @else
-                                                        <a href="javascript:void(0)" id="section-{{ $section->id }}" section_id="{{ $section->id }}" class="updateSectionStatus">Inactive</a>
+                                                        <a href="javascript:void(0)" id="section-{{ $section->id }}" section_id="{{ $section->id }}" class="updateSectionStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
                                                     @endif
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
-            </div>
-            <!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+                            </div><!-- /.card-body -->                            
+                        </div><!-- /.card -->                        
+                    </div><!-- /.col -->                    
+                </div><!-- /.row -->                
+            </div><!-- /.container-fluid -->            
+        </section><!-- /.content -->        
+    </div><!-- /.content-wrapper -->    
 
 @endsection

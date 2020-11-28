@@ -134,13 +134,13 @@
                                     <td><input type="number" name="stock[]" value="{{ $attribute->stock }}" required></td>
                                     <td>
                                         @if($attribute->status == 1)
-                                            <a href="javascript:void(0)" id="attribute-{{ $attribute->id }}" attribute_id="{{ $attribute->id }}" class="updateAttributeStatus">Active</a>
+                                            <a href="javascript:void(0)" id="attribute-{{ $attribute->id }}" attribute_id="{{ $attribute->id }}" class="updateAttributeStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
                                         @else
-                                            <a href="javascript:void(0)" id="attribute-{{ $attribute->id }}" attribute_id="{{ $attribute->id }}" class="updateAttributeStatus">Inactive</a>
+                                            <a href="javascript:void(0)" id="attribute-{{ $attribute->id }}" attribute_id="{{ $attribute->id }}" class="updateAttributeStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
                                         @endif
                                     </td>
                                     <td>
-                                        <a title="Remove Attribute" href="javascript:void(0)" class="confirmDelete" record="attribute" recordid="{{ $attribute->id }}"><i class="fas fa-trash"></i></a>
+                                        <a title="Remove Attribute" href="javascript:void(0)" class="confirmDelete" record="attribute" recordid="{{ $attribute->id }}"><i class="fas fa-trash fa-lg"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

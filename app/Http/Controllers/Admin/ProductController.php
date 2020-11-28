@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Section;
 use App\Category;
+use App\Brand;
 use App\ProductsAttribute;
 use App\ProductsImage;
 use Illuminate\Support\Facades\Session;
@@ -61,6 +62,7 @@ class ProductController extends Controller
 
             $rules = [
                 'category_id' => 'required',
+                'brand_id' => 'required',
                 'product_name' => 'required|regex:/^[\pL\s\-]+$/u',
                 'product_code' => 'required|alpha_num',
                 'product_price' => 'required|numeric',
@@ -69,6 +71,7 @@ class ProductController extends Controller
 
             $customMessages = [
                 'category_id.required' => 'Category is required.',
+                'brand_id.required' => 'Brand is required.',
                 'product_name.required' => 'Product name is required.',
                 'product_name.regex' => 'Product name is not valid.',
                 'product_code.required' => 'Product code is required.',
@@ -93,54 +96,6 @@ class ProductController extends Controller
 
             if(empty($data['product_video'])) {
                 $data['product_video'] = "";
-            }
-
-            if(empty($data['product_discount'])) {
-                $data['product_discount'] = 0;
-            }
-
-            if(empty($data['product_weight'])) {
-                $data['product_weight'] = 0;
-            }
-
-            if(empty($data['description'])) {
-                $data['description'] = "";
-            }
-
-            if(empty($data['wash_care'])) {
-                $data['wash_care'] = "";
-            }
-
-            if(empty($data['fabric'])) {
-                $data['fabric'] = "";
-            }
-
-            if(empty($data['pattern'])) {
-                $data['pattern'] = "";
-            }
-
-            if(empty($data['sleeve'])) {
-                $data['sleeve'] = "";
-            }
-
-            if(empty($data['fit'])) {
-                $data['fit'] = "";
-            }
-
-            if(empty($data['occasion'])) {
-                $data['occasion'] = "";
-            }
-
-            if(empty($data['meta_title'])) {
-                $data['meta_title'] = "";
-            }
-
-            if(empty($data['meta_keywords'])) {
-                $data['meta_keywords'] = "";
-            }
-
-            if(empty($data['meta_description'])) {
-                $data['meta_description'] = "";
             }
 
             // Upload Product Image
@@ -182,6 +137,7 @@ class ProductController extends Controller
 
             $categoryDetails = Category::find($data['category_id']);
             $product->section_id = $categoryDetails['section_id'];
+            $product->brand_id = $data['brand_id'];
             $product->category_id = $data['category_id'];
             $product->product_name = $data['product_name'];
             $product->product_code = $data['product_code'];
@@ -218,7 +174,10 @@ class ProductController extends Controller
         // Section with categories and subcategories
         $categories = Section::with('categories')->get();
 
-        return view('admin.products.add_edit_product', compact('title', 'fabricArray', 'sleeveArray', 'patternArray', 'fitArray', 'occasionArray', 'categories', 'productData'));
+        // Get All Active Brands
+        $brands = Brand::where('status', 1)->get();
+
+        return view('admin.products.add_edit_product', compact('title', 'fabricArray', 'sleeveArray', 'patternArray', 'fitArray', 'occasionArray', 'categories', 'productData', 'brands'));
     }
 
     public function deleteProductImage($id)

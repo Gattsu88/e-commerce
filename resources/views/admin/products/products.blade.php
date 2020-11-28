@@ -74,16 +74,16 @@
                                                 <td>{{ $product->section->name }}</td>
                                                 <td>
                                                     @if($product->status == 1)
-                                                        <a href="javascript:void(0)" id="product-{{ $product->id }}" product_id="{{ $product->id }}" class="updateProductStatus">Active</a>
+                                                        <a href="javascript:void(0)" id="product-{{ $product->id }}" product_id="{{ $product->id }}" class="updateProductStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
                                                     @else
-                                                        <a href="javascript:void(0)" id="product-{{ $product->id }}" product_id="{{ $product->id }}" class="updateProductStatus">Inactive</a>
+                                                        <a href="javascript:void(0)" id="product-{{ $product->id }}" product_id="{{ $product->id }}" class="updateProductStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a title="Add/Edit Attributes" href="{{ url('admin/add-attributes/'.$product->id) }}"><i class="fas fa-plus"></i></a>&nbsp;
-                                                    <a title="Add/Edit Images" href="{{ url('admin/add-images/'.$product->id) }}"><i class="fas fa-images"></i></a>&nbsp;
-                                                    <a title="Edit Product" href="{{ url('admin/add-edit-product/'.$product->id) }}"><i class="fas fa-edit"></i></a>&nbsp;
-                                                    <a title="Remove Product" href="javascript:void(0)" class="confirmDelete" record="product" recordid="{{ $product->id }}"><i class="fas fa-trash"></i></a>
+                                                    <a title="Add/Edit Attributes" href="{{ url('admin/add-attributes/'.$product->id) }}"><i class="fas fa-plus fa-lg"></i></a>&nbsp;
+                                                    <a title="Add/Edit Images" href="{{ url('admin/add-images/'.$product->id) }}"><i class="fas fa-images fa-lg"></i></a>&nbsp;
+                                                    <a title="Edit Product" href="{{ url('admin/add-edit-product/'.$product->id) }}"><i class="fas fa-edit fa-lg"></i></a>&nbsp;
+                                                    <a title="Remove Product" href="javascript:void(0)" class="confirmDelete" record="product" recordid="{{ $product->id }}"><i class="fas fa-trash fa-lg"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

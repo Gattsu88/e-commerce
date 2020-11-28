@@ -126,13 +126,13 @@
                                     </td>
                                     <td>
                                         @if($image->status == 1)
-                                            <a href="javascript:void(0)" id="image-{{ $image->id }}" image_id="{{ $image->id }}" class="updateImageStatus">Active</a>
+                                            <a href="javascript:void(0)" id="image-{{ $image->id }}" image_id="{{ $image->id }}" class="updateImageStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
                                         @else
-                                            <a href="javascript:void(0)" id="image-{{ $image->id }}" image_id="{{ $image->id }}" class="updateImageStatus">Inactive</a>
+                                            <a href="javascript:void(0)" id="image-{{ $image->id }}" image_id="{{ $image->id }}" class="updateImageStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
                                         @endif
-                                    </td>
+                                    </td>                                    
                                     <td>
-                                        <a title="Remove Image" href="javascript:void(0)" class="confirmDelete" record="image" recordid="{{ $image->id }}"><i class="fas fa-trash"></i></a>
+                                        <a title="Remove Image" href="javascript:void(0)" class="confirmDelete" record="image" recordid="{{ $image->id }}"><i class="fas fa-trash fa-lg"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
