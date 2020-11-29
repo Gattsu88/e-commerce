@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Auth::routes();
 
@@ -61,4 +61,8 @@ Route::prefix('/admin')->namespace('Admin')->group(function() {
         Route::post('update-image-status', 'ProductController@updateImageStatus');
         Route::get('delete-image/{id}', 'ProductController@deleteImage');
     });
+});
+
+Route::namespace('Front')->group(function() {
+    Route::get('/', 'IndexController@index');
 });
