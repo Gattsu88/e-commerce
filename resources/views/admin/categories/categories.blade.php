@@ -49,7 +49,6 @@
                                         <th>Parent Category</th>   
                                         <th>Section</th>    
 										<th>URL</th>
-                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -68,14 +67,12 @@
     												<td>{{ $category->url }}</td>
                                                     <td>
                                                         @if($category->status == 1)
-                                                            <a href="javascript:void(0)" id="category-{{ $category->id }}" category_id="{{ $category->id }}" class="updateCategoryStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
+                                                            <a title="Change Status" href="javascript:void(0)" id="category-{{ $category->id }}" category_id="{{ $category->id }}" class="updateCategoryStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
                                                         @else
-                                                            <a href="javascript:void(0)" id="category-{{ $category->id }}" category_id="{{ $category->id }}" class="updateCategoryStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{ url('admin/add-edit-category/'.$category->id) }}"><i class="fas fa-edit fa-lg"></i></a>&nbsp;
-                                                        <a href="javascript:void(0)" class="confirmDelete" record="category" recordid="{{ $category->id }}"><i class="fas fa-trash fa-lg"></i></a>
+                                                            <a title="Change Status" href="javascript:void(0)" id="category-{{ $category->id }}" category_id="{{ $category->id }}" class="updateCategoryStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
+                                                        @endif&nbsp;
+                                                        <a title="Edit Category" href="{{ url('admin/add-edit-category/'.$category->id) }}"><i class="fas fa-edit fa-lg"></i></a>&nbsp;
+                                                        <a title="Remove Category" href="javascript:void(0)" class="confirmDelete" record="category" recordid="{{ $category->id }}"><i class="fas fa-trash fa-lg"></i></a>
                                                     </td>
                                                 </tr>
                                         @endforeach

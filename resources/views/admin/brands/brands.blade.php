@@ -46,7 +46,6 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>      
-                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -57,12 +56,10 @@
                                                 <td>{{ $brand->name }}</td>
                                                 <td>
                                                     @if($brand->status == 1)
-                                                        <a href="javascript:void(0)" id="brand-{{ $brand->id }}" brand_id="{{ $brand->id }}" class="updateBrandStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
+                                                        <a title="Change Status" href="javascript:void(0)" id="brand-{{ $brand->id }}" brand_id="{{ $brand->id }}" class="updateBrandStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
                                                     @else
-                                                        <a href="javascript:void(0)" id="brand-{{ $brand->id }}" brand_id="{{ $brand->id }}" class="updateBrandStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
-                                                    @endif
-                                                </td>
-                                                <td>
+                                                        <a title="Change Status" href="javascript:void(0)" id="brand-{{ $brand->id }}" brand_id="{{ $brand->id }}" class="updateBrandStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
+                                                    @endif&nbsp;
                                                     <a title="Edit Product" href="{{ url('admin/add-edit-brand/'.$brand->id) }}"><i class="fas fa-edit fa-lg"></i></a>&nbsp;
                                                     <a title="Remove Brand" href="javascript:void(0)" class="confirmDelete" record="brand" recordid="{{ $brand->id }}"><i class="fas fa-trash fa-lg"></i></a>
                                                 </td>

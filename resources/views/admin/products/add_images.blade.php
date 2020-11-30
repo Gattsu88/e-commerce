@@ -111,8 +111,7 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Image</th>
-                            <th>Status</th>    
+                            <th>Image</th>   
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -123,15 +122,13 @@
                                     <td>{{ $image->id }}</td> 
                                     <td>
                                         <img src="{{ asset('images/product_images/small/'.$image->image) }}" alt="" style="width: 120px; margin-top: 5px;">
-                                    </td>
+                                    </td>                                   
                                     <td>
                                         @if($image->status == 1)
-                                            <a href="javascript:void(0)" id="image-{{ $image->id }}" image_id="{{ $image->id }}" class="updateImageStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
+                                            <a title="Change Status" href="javascript:void(0)" id="image-{{ $image->id }}" image_id="{{ $image->id }}" class="updateImageStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
                                         @else
-                                            <a href="javascript:void(0)" id="image-{{ $image->id }}" image_id="{{ $image->id }}" class="updateImageStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
-                                        @endif
-                                    </td>                                    
-                                    <td>
+                                            <a title="Change Status" href="javascript:void(0)" id="image-{{ $image->id }}" image_id="{{ $image->id }}" class="updateImageStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
+                                        @endif&nbsp;
                                         <a title="Remove Image" href="javascript:void(0)" class="confirmDelete" record="image" recordid="{{ $image->id }}"><i class="fas fa-trash fa-lg"></i></a>
                                     </td>
                                 </tr>

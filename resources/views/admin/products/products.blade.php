@@ -51,7 +51,6 @@
                                         <th>Product Image</th>
                                         <th>Category</th>    
                                         <th>Section</th>       
-										<th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -74,12 +73,10 @@
                                                 <td>{{ $product->section->name }}</td>
                                                 <td>
                                                     @if($product->status == 1)
-                                                        <a href="javascript:void(0)" id="product-{{ $product->id }}" product_id="{{ $product->id }}" class="updateProductStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
+                                                        <a title="Change Status" href="javascript:void(0)" id="product-{{ $product->id }}" product_id="{{ $product->id }}" class="updateProductStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
                                                     @else
-                                                        <a href="javascript:void(0)" id="product-{{ $product->id }}" product_id="{{ $product->id }}" class="updateProductStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
-                                                    @endif
-                                                </td>
-                                                <td>
+                                                        <a title="Change Status" href="javascript:void(0)" id="product-{{ $product->id }}" product_id="{{ $product->id }}" class="updateProductStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
+                                                    @endif&nbsp;
                                                     <a title="Add/Edit Attributes" href="{{ url('admin/add-attributes/'.$product->id) }}"><i class="fas fa-plus fa-lg"></i></a>&nbsp;
                                                     <a title="Add/Edit Images" href="{{ url('admin/add-images/'.$product->id) }}"><i class="fas fa-images fa-lg"></i></a>&nbsp;
                                                     <a title="Edit Product" href="{{ url('admin/add-edit-product/'.$product->id) }}"><i class="fas fa-edit fa-lg"></i></a>&nbsp;

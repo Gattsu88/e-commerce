@@ -118,8 +118,7 @@
                             <th>Size</th>
                             <th>SKU</th>    
                             <th>Price</th>
-                            <th>Stock</th>
-                            <th>Status</th>     
+                            <th>Stock</th>    
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -134,12 +133,10 @@
                                     <td><input type="number" name="stock[]" value="{{ $attribute->stock }}" required></td>
                                     <td>
                                         @if($attribute->status == 1)
-                                            <a href="javascript:void(0)" id="attribute-{{ $attribute->id }}" attribute_id="{{ $attribute->id }}" class="updateAttributeStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
+                                            <a title="Change Status" href="javascript:void(0)" id="attribute-{{ $attribute->id }}" attribute_id="{{ $attribute->id }}" class="updateAttributeStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
                                         @else
-                                            <a href="javascript:void(0)" id="attribute-{{ $attribute->id }}" attribute_id="{{ $attribute->id }}" class="updateAttributeStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
-                                        @endif
-                                    </td>
-                                    <td>
+                                            <a title="Change Status" href="javascript:void(0)" id="attribute-{{ $attribute->id }}" attribute_id="{{ $attribute->id }}" class="updateAttributeStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
+                                        @endif&nbsp;
                                         <a title="Remove Attribute" href="javascript:void(0)" class="confirmDelete" record="attribute" recordid="{{ $attribute->id }}"><i class="fas fa-trash fa-lg"></i></a>
                                     </td>
                                 </tr>

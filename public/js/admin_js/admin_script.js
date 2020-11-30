@@ -20,7 +20,7 @@ $(document).ready(function() {
     });
 
     // Update section status
-    $(".updateSectionStatus").click(function() {
+    $(document).on("click", ".updateSectionStatus", function() {
        var status = $(this).children("i").attr("status");
        var section_id = $(this).attr("section_id");
        $.ajax({
@@ -40,8 +40,8 @@ $(document).ready(function() {
     });
 	
     // Update category status
-	  $(".updateCategoryStatus").click(function() {
-       var status = $(this).text();
+	  $(document).on("click", ".updateCategoryStatus", function() {
+       var status = $(this).children("i").attr("status");
        var category_id = $(this).attr("category_id");
        $.ajax({
            type:'post',
@@ -60,8 +60,8 @@ $(document).ready(function() {
     });
 
     // Update product status
-    $(".updateProductStatus").click(function() {
-         var status = $(this).text();
+    $(document).on("click", ".updateProductStatus", function() {
+         var status = $(this).children("i").attr("status");
          var product_id = $(this).attr("product_id");
          $.ajax({
              type:'post',
@@ -80,8 +80,8 @@ $(document).ready(function() {
       });
 
     // Update attribute status
-    $(".updateAttributeStatus").click(function() {
-         var status = $(this).text();
+    $(document).on("click", ".updateAttributeStatus", function() {
+         var status = $(this).children("i").attr("status");
          var attribute_id = $(this).attr("attribute_id");
          $.ajax({
              type:'post',
@@ -100,8 +100,8 @@ $(document).ready(function() {
       });
 
     // Update image status
-    $(".updateImageStatus").click(function() {
-         var status = $(this).text();
+    $(document).on("click", ".updateImageStatus", function() {
+         var status = $(this).children("i").attr("status");
          var image_id = $(this).attr("image_id");
          $.ajax({
              type:'post',
@@ -120,8 +120,8 @@ $(document).ready(function() {
       });
 
     // Update brand status
-    $(".updateBrandStatus").click(function() {
-         var status = $(this).text();
+    $(document).on("click", ".updateBrandStatus", function() {
+         var status = $(this).children("i").attr("status");
          var brand_id = $(this).attr("brand_id");
          $.ajax({
              type:'post',
@@ -167,7 +167,7 @@ $(document).ready(function() {
 
   // Confirm deletion of record with Sweet Alert 2
 
-  $(".confirmDelete").click(function(){
+  $(document).on("click", ".confirmDelete", function() {
     var record = $(this).attr("record");
     var recordid = $(this).attr("recordid");
     

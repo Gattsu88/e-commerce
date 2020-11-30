@@ -48,9 +48,9 @@
                                                 <td>{{ $section->name }}</td>
                                                 <td>
                                                     @if($section->status == 1)
-                                                        <a href="javascript:void(0)" id="section-{{ $section->id }}" section_id="{{ $section->id }}" class="updateSectionStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
+                                                        <a title="Change Status" href="javascript:void(0)" id="section-{{ $section->id }}" section_id="{{ $section->id }}" class="updateSectionStatus"><i class="fas fa-toggle-on fa-lg" aria-hidden="true" status="Active"></i></a>
                                                     @else
-                                                        <a href="javascript:void(0)" id="section-{{ $section->id }}" section_id="{{ $section->id }}" class="updateSectionStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
+                                                        <a title="Change Status" href="javascript:void(0)" id="section-{{ $section->id }}" section_id="{{ $section->id }}" class="updateSectionStatus"><i class="fas fa-toggle-off fa-lg" aria-hidden="true" status="Inactive"></i></a>
                                                     @endif
                                                 </td>
                                             </tr>
