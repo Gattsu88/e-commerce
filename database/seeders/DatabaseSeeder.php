@@ -7,6 +7,7 @@ use App\Category;
 use App\Product;
 use App\ProductsAttribute;
 use App\ProductsImage;
+use App\Banner;
 
 class DatabaseSeeder extends Seeder
 {
@@ -91,6 +92,17 @@ class DatabaseSeeder extends Seeder
         );
         \App\Category::factory()->create(
             ['id' => 9, 'parent_id' => 7, 'section_id' => 2, 'category_name' => 'Formal Tops', 'category_image' => '', 'category_discount' => 0, 'description' => '', 'url' => 'formal tops', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 0]
+        );
+
+        // BANNERS
+        \App\Banner::factory()->create(
+            ['id' => 1, 'image' => 'banner-1.png', 'link' => '', 'title' => 'Black Jacket', 'alt' => 'Black Jacket', 'status' => 1]
+        );
+        \App\Banner::factory()->create(
+            ['id' => 2, 'image' => 'banner-2.png', 'link' => '', 'title' => 'Half Sleeve T-Shirt', 'alt' => 'Half Sleeve T-Shirt', 'status' => 1]
+        );
+        \App\Banner::factory()->create(
+            ['id' => 3, 'image' => 'banner-3.png', 'link' => '', 'title' => 'Full Sleeve T-Shirt', 'alt' => 'Full Sleeve T-Shirt', 'status' => 1]
         );
 
         // PRODUCTS
