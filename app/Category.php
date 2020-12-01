@@ -23,4 +23,26 @@ class Category extends Model
     {
         return $this->belongsTo('App\Category', 'parent_id')->select('id', 'category_name');
     }
+
+    public static function catDetails($url)
+    {
+        $catDetails = Category::select('id', 'parent_id', 'category_name', 'url', 'description')->with(['subcategories' => function($query) {
+            $query->select('id', 'parent_id', 'category_name', 'url', 'description')->where('status', 1);
+        }])->where('url', $url)->first()->toArray();
+
+        if($catDetails['parent_id'] == 0) {
+            $breadcrumbs = '<a href="'.url($catDetails['url']).'">'.$catDetails['category_name']; // Only show main category
+        } else {
+            $parentCategory = Category::select('category_name', 'url')->where('id', $catDetails['parent_id'])->first()->toArray();
+            $breadcrumbs = '<a href="'.url($parentCategory['url']).'">'.$parentCategory['category_name'].'</a><span class="divider">/</span><a href="'.url($catDetails['url']).'">'.$catDetails['category_name'].'</a>'; // Show main category and subcategory
+        }
+
+        $catIDs[] = $catDetails['id'];
+
+        foreach ($catDetails['subcategories'] as $key => $subcat) {
+            $catIDs[] = $subcat['id'];
+        }
+
+        return ['catIDs' => $catIDs, 'catDetails' => $catDetails, 'breadcrumbs' => $breadcrumbs];
+    } 
 }

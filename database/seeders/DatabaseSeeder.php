@@ -66,32 +66,32 @@ class DatabaseSeeder extends Seeder
 
         // MEN CATEGORIES
         \App\Category::factory()->create(
-            ['id' => 1, 'parent_id' => 0, 'section_id' => 1, 'category_name' => 'T-Shirts', 'category_image' => '', 'category_discount' => 0, 'description' => '', 'url' => 't-shirts', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 1]
+            ['id' => 1, 'parent_id' => 0, 'section_id' => 1, 'category_name' => 'T-Shirts', 'category_image' => '', 'category_discount' => 0, 'description' => 'T-Shirts category with various brands.', 'url' => 't-shirts', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 1]
         );
         \App\Category::factory()->create(
-            ['id' => 2, 'parent_id' => 1, 'section_id' => 1, 'category_name' => 'Casual T-Shirts', 'category_image' => '', 'category_discount' => 0, 'description' => '', 'url' => 'casual-t-shirts', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 1]
+            ['id' => 2, 'parent_id' => 1, 'section_id' => 1, 'category_name' => 'Casual T-Shirts', 'category_image' => '', 'category_discount' => 0, 'description' => 'Casual T-Shirts category with various brands.', 'url' => 'casual-t-shirts', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 1]
         );
         \App\Category::factory()->create(
-            ['id' => 3, 'parent_id' => 1, 'section_id' => 1, 'category_name' => 'Formal T-Shirts', 'category_image' => '', 'category_discount' => 0, 'description' => '', 'url' => 'formal-t-shirts', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 1]
+            ['id' => 3, 'parent_id' => 1, 'section_id' => 1, 'category_name' => 'Formal T-Shirts', 'category_image' => '', 'category_discount' => 0, 'description' => 'Formal T-Shirts category with various brands.', 'url' => 'formal-t-shirts', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 1]
         );
         \App\Category::factory()->create(
-            ['id' => 4, 'parent_id' => 0, 'section_id' => 1, 'category_name' => 'Denims', 'category_image' => '', 'category_discount' => 0, 'description' => '', 'url' => 'denims', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 0]
+            ['id' => 4, 'parent_id' => 0, 'section_id' => 1, 'category_name' => 'Denims', 'category_image' => '', 'category_discount' => 0, 'description' => 'Denims category with various brands.', 'url' => 'denims', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 0]
         );
         \App\Category::factory()->create(
-            ['id' => 5, 'parent_id' => 4, 'section_id' => 1, 'category_name' => 'Partywear Denims', 'category_image' => '', 'category_discount' => 0, 'description' => '', 'url' => 'partywear denims', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 0]
+            ['id' => 5, 'parent_id' => 4, 'section_id' => 1, 'category_name' => 'Partywear Denims', 'category_image' => '', 'category_discount' => 0, 'description' => 'Partywear Denims category with various brands.', 'url' => 'partywear denims', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 0]
         );
         // WOMEN CATEGORIES
         \App\Category::factory()->create(
-            ['id' => 6, 'parent_id' => 0, 'section_id' => 2, 'category_name' => 'Dresses', 'category_image' => '', 'category_discount' => 0, 'description' => '', 'url' => 'dresses', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 1]
+            ['id' => 6, 'parent_id' => 0, 'section_id' => 2, 'category_name' => 'Dresses', 'category_image' => '', 'category_discount' => 0, 'description' => 'Dresses category with various brands.', 'url' => 'dresses', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 1]
         );
         \App\Category::factory()->create(
-            ['id' => 7, 'parent_id' => 0, 'section_id' => 2, 'category_name' => 'Tops', 'category_image' => '', 'category_discount' => 0, 'description' => '', 'url' => 'tops', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 0]
+            ['id' => 7, 'parent_id' => 0, 'section_id' => 2, 'category_name' => 'Tops', 'category_image' => '', 'category_discount' => 0, 'description' => 'Tops category with various brands.', 'url' => 'tops', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 0]
         );
         \App\Category::factory()->create(
-            ['id' => 8, 'parent_id' => 7, 'section_id' => 2, 'category_name' => 'Casual Tops', 'category_image' => '', 'category_discount' => 0, 'description' => '', 'url' => 'casual tops', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 0]
+            ['id' => 8, 'parent_id' => 7, 'section_id' => 2, 'category_name' => 'Casual Tops', 'category_image' => '', 'category_discount' => 0, 'description' => 'Casual Tops category with various brands.', 'url' => 'casual tops', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 0]
         );
         \App\Category::factory()->create(
-            ['id' => 9, 'parent_id' => 7, 'section_id' => 2, 'category_name' => 'Formal Tops', 'category_image' => '', 'category_discount' => 0, 'description' => '', 'url' => 'formal tops', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 0]
+            ['id' => 9, 'parent_id' => 7, 'section_id' => 2, 'category_name' => 'Formal Tops', 'category_image' => '', 'category_discount' => 0, 'description' => 'Formal Tops category with various brands.', 'url' => 'formal tops', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 0]
         );
 
         // BANNERS
@@ -163,7 +163,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
         \App\Product::factory()->create(
-            ['id' => 8, 'section_id' => 1, 'brand_id' => 1,'category_id' => 1, 'product_name' => 'Yellow Formal T-Shirt', 'product_code' => 'YFT01', 
+            ['id' => 8, 'section_id' => 1, 'brand_id' => 1,'category_id' => 3, 'product_name' => 'Yellow Formal T-Shirt', 'product_code' => 'YFT01', 
             'product_color' => 'Yellow', 'product_price' => '1950', 'product_discount' => 0, 'product_weight' => 240, 'product_video' => '', 
             'main_image' => 'yellow-formal-t-shirt-1.jpg-18228.jpg', 'description' => '', 'wash_care' => '', 'fabric' => '', 
             'pattern' => '', 'sleeve' => '', 'fit' => '', 'occasion' => '', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 
