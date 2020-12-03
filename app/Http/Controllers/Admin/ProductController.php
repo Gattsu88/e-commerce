@@ -164,12 +164,14 @@ class ProductController extends Controller
             return redirect('admin/products');
         }
         
-        // Filter Arrays
-        $fabricArray = ['Cotton', 'Polyester', 'Wool'];
-        $sleeveArray = ['Full Sleeve', 'Half Sleeve', 'Short Sleeve', 'Sleevless'];
-        $patternArray = ['Checked', 'Plain', 'Printed', 'Self', 'Solid'];
-        $fitArray = ['Regular', 'Slim', 'Wool'];
-        $occasionArray = ['Casual', 'Formal'];
+        // Product Filters
+        $productFilters = Product::productFilters();
+        
+        $fabricArray = $productFilters['fabricArray'];
+        $sleeveArray = $productFilters['sleeveArray'];
+        $patternArray = $productFilters['patternArray'];
+        $fitArray = $productFilters['fitArray'];
+        $occasionArray = $productFilters['occasionArray'];
 
         // Section with categories and subcategories
         $categories = Section::with('categories')->get();

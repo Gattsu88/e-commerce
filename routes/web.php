@@ -15,6 +15,8 @@
     return view('welcome');
 });*/
 
+use App\Category;
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -82,6 +84,10 @@ Route::namespace('Front')->group(function() {
     // HOMEPAGE
     Route::get('/', 'IndexController@index');
 
-    // LISTING/CATEGORIES
-    Route::get('/{url}', 'ProductController@listing');
+    // LISTING / CATEGORIES
+    $catURLs = Category::select('url')->where('status', 1)->get()->pluck('url')->toArray();
+
+    foreach($catURLs as $url) {
+        Route::get('/'.$url, 'ProductController@listing');
+    }
 });
