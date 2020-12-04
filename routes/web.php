@@ -86,8 +86,11 @@ Route::namespace('Front')->group(function() {
 
     // LISTING / CATEGORIES
     $catURLs = Category::select('url')->where('status', 1)->get()->pluck('url')->toArray();
-
     foreach($catURLs as $url) {
         Route::get('/'.$url, 'ProductController@listing');
     }
+
+    // PRODUCT DETAILS
+    Route::get('product/{id}', 'ProductController@productDetails');
+    Route::post('get-price-stock', 'ProductController@getPriceStock');
 });

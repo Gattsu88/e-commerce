@@ -3,6 +3,12 @@ $(document).ready(function() {
         this.form.submit();
     });*/
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     $("#sort").on("change", function() {
         var sort = $(this).val();
         var fabric = get_filter('fabric');
@@ -118,4 +124,24 @@ $(document).ready(function() {
         });
         return filter;
     }
+
+    $("#getPrice").change(function() {
+        var size = $(this).val();
+        if(size == "") {
+            alert("Please select size.");
+            return false;
+        }
+        var product_id = $(this).attr("product-id");
+        $.ajax({
+            url:"/get-price-stock",
+            data:{size:size,product_id:product_id},
+            type:"post",
+            success:function(resp) {
+                $(".getAttrStock").html(resp[1] + " items in stock.");
+                $(".getAttrPrice").html(resp[0] + " rsd");
+            },error:function() {
+                alert("Error");
+            }
+        });
+    });
 });

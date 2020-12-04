@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
-
+use App\ProductsAttribute;
 
 class ProductController extends Controller
 {
@@ -62,7 +62,7 @@ class ProductController extends Controller
                     $categoryProducts->orderBy('id', 'Desc');
                 }
 
-                $categoryProducts = $categoryProducts->paginate(2);
+                $categoryProducts = $categoryProducts->paginate(6);
 
                 return view('front.products.ajax_products_listing', compact('categoryDetails', 'categoryProducts', 'url'));
             } else {
@@ -74,7 +74,7 @@ class ProductController extends Controller
             $categoryCount = Category::where(['url' => $url, 'status' => 1])->count();
             if($categoryCount > 0) {
                 $categoryDetails = Category::catDetails($url);
-                $categoryProducts = Product::with('brand')->whereIn('category_id', $categoryDetails['catIDs'])->where('status', 1)->paginate(2);
+                $categoryProducts = Product::with('brand')->whereIn('category_id', $categoryDetails['catIDs'])->where('status', 1)->paginate(6);
                 
                 // Product Filters
                 $productFilters = Product::productFilters();
@@ -92,5 +92,24 @@ class ProductController extends Controller
                 abort(404);
             }
         }     
+    }
+
+    public function productDetails($id)
+    {
+        $productDetails = Product::with('category', 'brand', 'attributes', 'images')->find($id)->toArray();
+        $totalStock = ProductsAttribute::where('product_id', $id)->sum('stock');
+        $relatedProducts = Product::where('category_id', $productDetails['category']['id'])->where('id', '!=', $id)->limit(3)->inRandomOrder()->get()->toArray();
+
+        return view('front.products.product_details', compact('productDetails', 'totalStock', 'relatedProducts'));
+    }
+
+    public function getPriceStock(Request $request)
+    {
+        if($request->ajax()) {
+            $data = $request->all();
+            $getPriceStock = ProductsAttribute::where(['product_id' => $data['product_id'], 'size' => $data['size']])->first(); 
+
+            return [$getPriceStock->price, $getPriceStock->stock];           
+        }
     }
 }

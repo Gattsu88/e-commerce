@@ -34,7 +34,7 @@ class Category extends Model
             $breadcrumbs = '<a href="'.url($catDetails['url']).'" >'.$catDetails['category_name'].'</a>'; // Only show main category
         } else {
             $parentCategory = Category::select('category_name', 'url')->where('id', $catDetails['parent_id'])->first()->toArray();
-            $breadcrumbs = '<a href="'.url($parentCategory['url']).'" >'.$parentCategory['category_name'].'</a>&nbsp;<span class="divider">/</span>&bnsp;<a href="'.url($catDetails['url']).'" >'.$catDetails['category_name'].'</a>'; // Show main category and subcategory
+            $breadcrumbs = '<a href="'.url($parentCategory['url']).'" >'.$parentCategory['category_name'].'</a>&nbsp;<span class="divider">/</span>&nbsp;<a href="'.url($catDetails['url']).'" >'.$catDetails['category_name'].'</a>'; // Show main category and subcategory
         }
 
         $catIDs[] = $catDetails['id'];
