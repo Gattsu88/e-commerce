@@ -75,6 +75,9 @@
                                 <div class="form-group">
                                     <label for="product_color">Product Color:</label> &nbsp; {{ $productData['product_color'] }}
                                 </div>
+                                <div class="form-group">
+                                    <label for="product_color">Product Price:</label> &nbsp; {{ $productData['product_price'] }}
+                                </div>
                             </div>               
                             <div class="col-md-6">               
                                 <div class="form-group">

@@ -206,7 +206,7 @@ class ProductController extends Controller
 
         Session::flash('success_message', $message);
 
-        return redirect()->back();
+        return back();
     }
 
     public function deleteProductVideo($id)
@@ -225,7 +225,7 @@ class ProductController extends Controller
 
         Session::flash('success_message', $message);
 
-        return redirect()->back();
+        return back();
     }
 
     public function deleteProduct($id)
@@ -236,7 +236,7 @@ class ProductController extends Controller
 
         Session::flash('success_message', $message);
 
-        return redirect()->back();
+        return back();
     }
 
     public function addAttributes(Request $request, $id)
@@ -250,14 +250,14 @@ class ProductController extends Controller
                     if($attrCountSKU > 0) {
                         $message = 'SKU already exists.';
                         Session::flash('error_message', $message);
-                        return redirect()->back();
+                        return back();
                     }
 
                     $attrCountSize = ProductsAttribute::where(['product_id' => $id, 'size' => $data['size'][$key]])->count();
                     if($attrCountSize > 0) {
                         $message = 'Size already exists.';
                         Session::flash('error_message', $message);
-                        return redirect()->back();
+                        return back();
                     }
 
                     $attribute = new ProductsAttribute;
@@ -277,7 +277,7 @@ class ProductController extends Controller
         }
 
         $title = "Product Attributes"; 
-        $productData = Product::select('id', 'product_name', 'product_code', 'product_color', 'main_image')->with('attributes')->find($id);
+        $productData = Product::select('id', 'product_name', 'product_code', 'product_color', 'product_price', 'main_image')->with('attributes')->find($id);
 
         return view('admin.products.add_attributes', compact('title', 'productData'));
     }
@@ -295,7 +295,7 @@ class ProductController extends Controller
 
             $message = 'Product attributes has been updated successfully.';
             Session::flash('success_message', $message);
-            return redirect()->back();
+            return back();
         }
     }
 
@@ -323,7 +323,7 @@ class ProductController extends Controller
 
         Session::flash('success_message', $message);
 
-        return redirect()->back();
+        return back();
     }
 
     public function addImages(Request $request, $id)
@@ -355,7 +355,7 @@ class ProductController extends Controller
 
                 $message = 'Product images has been added successfully.';
                 Session::flash('success_message', $message);
-                return redirect()->back();                
+                return back();                
             }
 
         }
@@ -405,6 +405,6 @@ class ProductController extends Controller
 
         Session::flash('success_message', $message);
 
-        return redirect()->back();
+        return back();
     }
 }
