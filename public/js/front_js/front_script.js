@@ -133,12 +133,16 @@ $(document).ready(function() {
         }
         var product_id = $(this).attr("product-id");
         $.ajax({
-            url:"/get-price-stock",
+            url:"/get-product-price-stock",
             data:{size:size,product_id:product_id},
             type:"post",
             success:function(resp) {
                 $(".getAttrStock").html(resp[1] + " items in stock.");
-                $(".getAttrPrice").html(resp[0] + " rsd");
+                if(resp[0]['discount'] > 0) {
+                    $(".getAttrPrice").html("<del>" + resp[0]['product_price'] + " rsd</del> <font color='red'>" + resp[0]['finalPrice'] + " rsd</font>");
+                } else {
+                    $(".getAttrPrice").html(resp[0]['product_price'] + " rsd");
+                }
             },error:function() {
                 alert("Error");
             }

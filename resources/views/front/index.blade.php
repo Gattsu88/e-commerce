@@ -1,3 +1,7 @@
+<?php
+    use App\Product;
+?>
+
 @extends('layouts.front_layout.front_layout')
 
 @section('content')
@@ -15,7 +19,7 @@
                             <li class="span3">
                                 <div class="thumbnail">
                                     <i class="tag"></i>
-                                    <a href="product_details.html">
+                                    <a href="{{ url('product/'.$item['id']) }}">
                                     <?php $product_image_path = 'images/product_images/small/'.$item['main_image']; ?>
                                     @if(!empty($item['main_image']) && file_exists($product_image_path))
                                         <img style="width: 100px;" src="{{ asset('images/product_images/small/'.$item['main_image']) }}" alt="">
@@ -24,7 +28,19 @@
                                     @endif
                                     <div class="caption">
                                         <h5>{{ $item['product_name'] }}</h5>
-                                        <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">{{ $item['product_price'] }} rsd</span></h4>
+
+                                        <?php $discountedPrice = Product::getDiscountedPrice($item['id']); ?>
+
+                                        <h4><a class="btn" href="{{ url('product/'.$item['id']) }}">VIEW</a> 
+                                            <span class="pull-right" style="font-size: 12px;">
+                                                @if($discountedPrice > 0)
+                                                    <del>{{ $item['product_price'] }} rsd</del>
+                                                    <font color="red">{{ $discountedPrice }} rsd</font>
+                                                @else
+                                                    {{ $item['product_price'] }} rsd
+                                                @endif
+                                            </span>
+                                        </h4>
                                     </div>
                                 </div>
                             </li>
@@ -43,7 +59,7 @@
         @foreach($newProducts as $newProduct)
         <li class="span3">
             <div class="thumbnail">
-                <a  href="product_details.html">
+                <a  href="{{ url('product/'.$newProduct['id']) }}">
                 <?php $product_image_path = 'images/product_images/small/'.$newProduct['main_image']; ?>
                 @if(!empty($newProduct['main_image']) && file_exists($product_image_path))
                     <img style="width: 150px;" src="{{ asset('images/product_images/small/'.$newProduct['main_image']) }}" alt="">
@@ -55,8 +71,17 @@
                     <p>
                         {{ $newProduct['product_code'] }} | {{ $newProduct['product_color'] }}
                     </p>
+
+                    <?php $discountedPrice = Product::getDiscountedPrice($newProduct['id']); ?>
                     
-                    <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">{{ $item['product_price'] }} rsd</a></h4>
+                    <h4 style="text-align:center"><!--<a class="btn" href="{{ url('product/'.$newProduct['id']) }}"> <i class="icon-zoom-in"></i></a>--> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">
+                    @if($discountedPrice > 0)
+                        <del>{{ $newProduct['product_price'] }} rsd</del>
+                        <font color="yellow">{{ $discountedPrice }} rsd</font>                   
+                    @else
+                        {{ $newProduct['product_price'] }} rsd
+                    @endif
+                    </a></h4>
                 </div>
             </div>
         </li>

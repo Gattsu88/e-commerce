@@ -44,4 +44,41 @@ class Product extends Model
 
         return $productFilters;
     }
+
+    // JUST FOR LISTING PAGE
+    public static function getDiscountedPrice($product_id)
+    {
+        $productDetails = Product::select('product_price', 'product_discount', 'category_id')->where('id', $product_id)->first()->toArray();
+        $categoryDetails = Category::select('category_discount')->where('id', $productDetails['category_id'])->first()->toArray();
+
+        if($productDetails['product_discount'] > 0) {
+            $discountedPrice = $productDetails['product_price'] - $productDetails['product_price'] * $productDetails['product_discount'] / 100;
+        } else if($categoryDetails['category_discount'] > 0) {
+            $discountedPrice = $productDetails['product_price'] - $productDetails['product_price'] * $categoryDetails['category_discount'] / 100;
+        } else {
+            $discountedPrice = 0;
+        }
+
+        return $discountedPrice;
+    }
+
+    public static function getDiscountedAttrPrice($product_id, $size)
+    {
+        $productAttrPrice = ProductsAttribute::where(['product_id' => $product_id, 'size' => $size])->first()->toArray();
+        $productDetails = Product::select('product_discount', 'category_id')->where('id', $product_id)->first()->toArray();
+        $categoryDetails = Category::select('category_discount')->where('id', $productDetails['category_id'])->first()->toArray();
+
+        if($productDetails['product_discount'] > 0) {
+            $finalPrice = $productAttrPrice['price'] - $productAttrPrice['price'] * $productDetails['product_discount'] / 100;
+            $discount = $productAttrPrice['price'] - $finalPrice;
+        } else if($categoryDetails['category_discount'] > 0) {
+            $finalPrice = $productAttrPrice['price'] - $productAttrPrice['price'] * $categoryDetails['category_discount'] / 100;
+            $discount = $productAttrPrice['price'] - $finalPrice;
+        } else {
+            $finalPrice = $productAttrPrice['price'];
+            $discount = 0;
+        }
+
+        return ['product_price' => $productAttrPrice['price'], 'finalPrice' => $finalPrice, 'discount' => $discount];
+    }
 }

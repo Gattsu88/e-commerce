@@ -108,13 +108,14 @@ class ProductController extends Controller
         return view('front.products.product_details', compact('productDetails', 'totalStock', 'relatedProducts'));
     }
 
-    public function getPriceStock(Request $request)
+    public function getProductPriceStock(Request $request)
     {
         if($request->ajax()) {
             $data = $request->all();
-            $getPriceStock = ProductsAttribute::where(['product_id' => $data['product_id'], 'size' => $data['size']])->first(); 
+            $getDiscountedAttrPrice = Product::getDiscountedAttrPrice($data['product_id'], $data['size']);
+            $getStock = ProductsAttribute::select('stock')->where(['product_id' => $data['product_id'], 'size' => $data['size']])->first()->toArray();
 
-            return [$getPriceStock->price, $getPriceStock->stock];           
+            return [$getDiscountedAttrPrice, $getStock['stock']];           
         }
     }
 
@@ -161,7 +162,7 @@ class ProductController extends Controller
 
             $message = "Product has been added to Cart.";
             Session::flash('success_message', $message);
-            return back();
+            return redirect('cart');
         }
     }
 

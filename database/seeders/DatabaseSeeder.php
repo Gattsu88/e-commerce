@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
             ['id' => 1, 'parent_id' => 0, 'section_id' => 1, 'category_name' => 'T-Shirts', 'category_image' => '', 'category_discount' => 0, 'description' => 'T-Shirts category with various brands.', 'url' => 't-shirts', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 1]
         );
         \App\Category::factory()->create(
-            ['id' => 2, 'parent_id' => 1, 'section_id' => 1, 'category_name' => 'Casual T-Shirts', 'category_image' => '', 'category_discount' => 0, 'description' => 'Casual T-Shirts category with various brands.', 'url' => 'casual-t-shirts', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 1]
+            ['id' => 2, 'parent_id' => 1, 'section_id' => 1, 'category_name' => 'Casual T-Shirts', 'category_image' => '', 'category_discount' => 10, 'description' => 'Casual T-Shirts category with various brands.', 'url' => 'casual-t-shirts', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 1]
         );
         \App\Category::factory()->create(
             ['id' => 3, 'parent_id' => 1, 'section_id' => 1, 'category_name' => 'Formal T-Shirts', 'category_image' => '', 'category_discount' => 0, 'description' => 'Formal T-Shirts category with various brands.', 'url' => 'formal-t-shirts', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 'status' => 1]
@@ -116,7 +116,7 @@ class DatabaseSeeder extends Seeder
         );
         \App\Product::factory()->create(
             ['id' => 2, 'section_id' => 1, 'brand_id' => 2, 'category_id' => 3, 'product_name' => 'Blue Formal T-Shirt', 'product_code' => 'BFT01', 
-            'product_color' => 'Blue', 'product_price' => '1250', 'product_discount' => 10, 'product_weight' => 250, 'product_video' => '', 
+            'product_color' => 'Blue', 'product_price' => '1250', 'product_discount' => 0, 'product_weight' => 250, 'product_video' => '', 
             'main_image' => 'blue-t-shirt -1.jpg-59696.jpg', 'description' => 'Eu cum euismod comprehensam, ei mei laboramus disputando repudiandae. Dico habeo euripidis ea vis. His cu vide verear, tollit lucilius perfecto et eum. Prodesset deseruisse ad vix. Omnis causae officiis sit eu. Cum eu legimus molestiae omittantur.', 'wash_care' => '', 'fabric' => 'Polyester', 
             'pattern' => '', 'sleeve' => '', 'fit' => '', 'occasion' => 'Formal', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 
             'is_featured' => 'Yes', 'status' => 1
@@ -124,7 +124,7 @@ class DatabaseSeeder extends Seeder
         );
         \App\Product::factory()->create(
             ['id' => 3, 'section_id' => 2, 'brand_id' => 3, 'category_id' => 6, 'product_name' => 'Stars Dress', 'product_code' => 'BSD01', 
-            'product_color' => 'Blue', 'product_price' => '1700', 'product_discount' => 5, 'product_weight' => 250, 'product_video' => '', 
+            'product_color' => 'Blue', 'product_price' => '1700', 'product_discount' => 0, 'product_weight' => 250, 'product_video' => '', 
             'main_image' => 'dress-1-1.jpg-12226.jpg', 'description' => 'Labore aliquando reprehendunt nam cu, quod case intellegam duo ex. Zril nostrum erroribus nam ut, has ea option sanctus. Mazim noluisse ad mel, ad pri tota dictas recteque. Eum vidit maiestatis mnesarchum ei, tota pericula usu et.', 'wash_care' => '', 'fabric' => '', 
             'pattern' => '', 'sleeve' => '', 'fit' => '', 'occasion' => 'Casual', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 
             'is_featured' => 'No', 'status' => 1
@@ -132,7 +132,7 @@ class DatabaseSeeder extends Seeder
         );
         \App\Product::factory()->create(
             ['id' => 4, 'section_id' => 2, 'brand_id' => 3, 'category_id' => 6, 'product_name' => 'Graphic Dress', 'product_code' => 'BGD01', 
-            'product_color' => 'Black', 'product_price' => '1900', 'product_discount' => 10, 'product_weight' => 240, 'product_video' => '', 
+            'product_color' => 'Black', 'product_price' => '1900', 'product_discount' => 0, 'product_weight' => 240, 'product_video' => '', 
             'main_image' => 'dress-2-1.jpg-71796.jpg', 'description' => 'Sed purto noster in. Tamquam cotidieque quo id, ea nam mundi vituperatoribus, sed iusto iuvaret ei. Cum delicata constituam te. Id eos facer apeirian, pro sumo saepe conceptam et. Eos iisque iracundia signiferumque an.', 'wash_care' => '', 'fabric' => '', 
             'pattern' => '', 'sleeve' => '', 'fit' => '', 'occasion' => 'Casual', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 
             'is_featured' => 'Yes', 'status' => 1
@@ -140,7 +140,7 @@ class DatabaseSeeder extends Seeder
         );
         \App\Product::factory()->create(
             ['id' => 5, 'section_id' => 2, 'brand_id' => 4, 'category_id' => 6, 'product_name' => 'Nocturne Dress', 'product_code' => 'GND01', 
-            'product_color' => 'Green', 'product_price' => '1800', 'product_discount' => 15, 'product_weight' => 220, 'product_video' => '', 
+            'product_color' => 'Green', 'product_price' => '1800', 'product_discount' => 0, 'product_weight' => 220, 'product_video' => '', 
             'main_image' => 'dress-3-1.jpg-37759.jpg', 'description' => 'Quas regione accommodare mea te. Sea diam nihil consequat eu, eam senserit necessitatibus te. Laoreet gubergren per ex. In per iisque dolores volutpat. Dicat voluptatum mea ad, harum saepe delicatissimi pro te.', 'wash_care' => '', 'fabric' => '', 
             'pattern' => '', 'sleeve' => '', 'fit' => '', 'occasion' => 'Casual', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 
             'is_featured' => 'Yes', 'status' => 1
@@ -148,7 +148,7 @@ class DatabaseSeeder extends Seeder
         );
         \App\Product::factory()->create(
             ['id' => 6, 'section_id' => 2, 'brand_id' => 4, 'category_id' => 6, 'product_name' => 'Whimsy Dress', 'product_code' => 'MWD01', 
-            'product_color' => 'Multicolor', 'product_price' => '2000', 'product_discount' => 5, 'product_weight' => 230, 'product_video' => '', 
+            'product_color' => 'Multicolor', 'product_price' => '2000', 'product_discount' => 0, 'product_weight' => 230, 'product_video' => '', 
             'main_image' => 'dress-4-1.jpg-35544.jpg', 'description' => 'Ne nam philosophia theophrastus, errem decore equidem id usu. Suas atomorum definiebas ne mel, aeterno invidunt abhorreant per ex.', 'wash_care' => '', 'fabric' => '', 
             'pattern' => '', 'sleeve' => '', 'fit' => '', 'occasion' => 'Casual', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 
             'is_featured' => 'Yes', 'status' => 1
@@ -156,7 +156,7 @@ class DatabaseSeeder extends Seeder
         );
         \App\Product::factory()->create(
             ['id' => 7, 'section_id' => 1, 'brand_id' => 2,'category_id' => 2, 'product_name' => 'Red Casual T-Shirt', 'product_code' => 'RCT01', 
-            'product_color' => 'Red', 'product_price' => '1750', 'product_discount' => 5, 'product_weight' => 220, 'product_video' => '', 
+            'product_color' => 'Red', 'product_price' => '1750', 'product_discount' => 0, 'product_weight' => 220, 'product_video' => '', 
             'main_image' => 'red-casual-t-shirt-1.jpg-4497.jpg', 'description' => 'Ius ne viderer democritum, aliquando democritum usu ut, pro no meliore nominavi. Utinam dolore blandit te est, simul mucius admodum quo et, sensibus iracundia cum cu.', 'wash_care' => '', 'fabric' => 'Polyester', 
             'pattern' => '', 'sleeve' => '', 'fit' => '', 'occasion' => 'Casual', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 
             'is_featured' => 'No', 'status' => 1
@@ -164,7 +164,7 @@ class DatabaseSeeder extends Seeder
         );
         \App\Product::factory()->create(
             ['id' => 8, 'section_id' => 1, 'brand_id' => 1,'category_id' => 3, 'product_name' => 'Yellow Formal T-Shirt', 'product_code' => 'YFT01', 
-            'product_color' => 'Yellow', 'product_price' => '1950', 'product_discount' => 0, 'product_weight' => 240, 'product_video' => '', 
+            'product_color' => 'Yellow', 'product_price' => '1950', 'product_discount' => 10, 'product_weight' => 240, 'product_video' => '', 
             'main_image' => 'yellow-formal-t-shirt-1.jpg-18228.jpg', 'description' => 'Vidit utamur forensibus te pro. Mollis platonem recteque mel ea, assum intellegat omittantur te vim. Prompta erroribus liberavisse et ius, ad quo assum consul.', 'wash_care' => '', 'fabric' => 'Cotton', 
             'pattern' => '', 'sleeve' => '', 'fit' => '', 'occasion' => 'Formal', 'meta_title' => '', 'meta_description' => '', 'meta_keywords' => '', 
             'is_featured' => 'Yes', 'status' => 1
@@ -192,6 +192,18 @@ class DatabaseSeeder extends Seeder
         );
         \App\ProductsAttribute::factory()->create(
             ['id' => 7, 'product_id' => 2, 'size' => 'Extra Large', 'price' => 1700, 'stock' => 15, 'sku' => 'BFT01-XL', 'status' => 1]
+        );
+        \App\ProductsAttribute::factory()->create(
+            ['id' => 8, 'product_id' => 3, 'size' => 'Small', 'price' => 1700, 'stock' => 15, 'sku' => 'BSD01-S', 'status' => 1]
+        );
+        \App\ProductsAttribute::factory()->create(
+            ['id' => 9, 'product_id' => 4, 'size' => 'Small', 'price' => 1900, 'stock' => 10, 'sku' => 'BGD01-S', 'status' => 1]
+        );
+        \App\ProductsAttribute::factory()->create(
+            ['id' => 10, 'product_id' => 5, 'size' => 'Small', 'price' => 1800, 'stock' => 20, 'sku' => 'GND01-S', 'status' => 1]
+        );
+        \App\ProductsAttribute::factory()->create(
+            ['id' => 11, 'product_id' => 6, 'size' => 'Small', 'price' => 2000, 'stock' => 25, 'sku' => 'MWD01-S', 'status' => 1]
         );
 
         // PRODUCTS IMAGES
