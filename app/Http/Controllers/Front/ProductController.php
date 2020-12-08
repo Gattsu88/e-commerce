@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -171,5 +172,16 @@ class ProductController extends Controller
         $userCartItems = Cart::userCartItems();
 
         return view('front.products.cart', compact('userCartItems'));
+    }
+
+    public function updateCartItemQuantity(Request $request)
+    {
+        if($request->ajax()) {
+            $data = $request->all();
+            Cart::where('id', $data['cartid'])->update(['quantity' => $data['quantity']]);
+            $userCartItems = Cart::userCartItems();
+
+            return response()->json(['view' => (String)View::make('front.products.cart_items', compact('userCartItems'))]);
+        }
     }
 }
