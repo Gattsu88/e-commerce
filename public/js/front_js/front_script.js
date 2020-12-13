@@ -170,10 +170,31 @@ $(document).ready(function() {
             url:"/update-cart-item-quantity",
             type:"post",
             success:function(resp) {
+                if(resp.status == false) {
+                    alert(resp.message);
+                }
                 $("#appendCartItems").html(resp.view);
             },error:function() {
                 alert("Error");
             }
         });
+    });
+
+    // DELETE CART ITEM
+    $(document).on("click", ".btnItemDelete", function() {      
+        var cartid = $(this).data("cartid");
+        var result = confirm("Are you sure?");
+        if(result) {
+            $.ajax({
+                data:{"cartid":cartid},
+                url:"/delete-cart-item",
+                type:"post",
+                success:function(resp) {
+                    $("#appendCartItems").html(resp.view);
+                },error:function() {
+                    alert("Error");
+                }
+            });
+        }        
     });
 });

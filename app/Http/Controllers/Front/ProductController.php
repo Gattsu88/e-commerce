@@ -178,10 +178,53 @@ class ProductController extends Controller
     {
         if($request->ajax()) {
             $data = $request->all();
+
+            // GET CART DETAILS
+            $cartDetails = Cart::find($data['cartid']);
+
+            // GET AVAILABLE PRODUCT STOCK
+            $availableStock = ProductsAttribute::select('stock')->where(['product_id' => $cartDetails['product_id'], 'size' => $cartDetails['size']])->first()->toArray();
+
+            // IF STOCK IS AVAILABLE
+            if($data['quantity'] > $availableStock['stock']) {
+                $userCartItems = Cart::userCartItems();
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Prodcut stock is not available.',
+                    'view' => (String)View::make('front.products.cart_items', compact('userCartItems'))
+                ]);
+            }
+
+            // IF SIZE IS AVAILABLE
+            $availableSize = ProductsAttribute::where(['product_id' => $cartDetails['product_id'], 'size' => $cartDetails['size'], 'status' => 1])->count();
+            if($availableSize == 0) {
+                $userCartItems = Cart::userCartItems();
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Prodcut size is not available.',
+                    'view' => (String)View::make('front.products.cart_items', compact('userCartItems'))
+                ]);
+            }
+
             Cart::where('id', $data['cartid'])->update(['quantity' => $data['quantity']]);
             $userCartItems = Cart::userCartItems();
 
-            return response()->json(['view' => (String)View::make('front.products.cart_items', compact('userCartItems'))]);
+            return response()->json([
+                'status' =>true,
+                'view' => (String)View::make('front.products.cart_items', compact('userCartItems'))
+            ]);
+        }
+    }
+
+    public function deleteCartItem(Request $request)
+    {
+        if($request->ajax()) {
+            $data = $request->all();
+            Cart::where('id', $data['cartid'])->delete();            
+            $userCartItems = Cart::userCartItems();
+            return response()->json([
+                'view' => (String)View::make('front.products.cart_items', compact('userCartItems'))
+            ]);
         }
     }
 }

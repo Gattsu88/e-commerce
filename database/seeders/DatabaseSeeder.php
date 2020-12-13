@@ -173,37 +173,37 @@ class DatabaseSeeder extends Seeder
 
         // PRODUCTS ATTRIBUTES
         \App\ProductsAttribute::factory()->create(
-            ['id' => 1, 'product_id' => 1, 'size' => 'Small', 'price' => 1200, 'stock' => 15, 'sku' => 'GCT01-S', 'status' => 1]
+            ['id' => 1, 'product_id' => 1, 'size' => 'Small', 'price' => 1200, 'stock' => 2, 'sku' => 'GCT01-S', 'status' => 1]
         );
         \App\ProductsAttribute::factory()->create(
-            ['id' => 2, 'product_id' => 1, 'size' => 'Medium', 'price' => 1300, 'stock' => 20, 'sku' => 'GCT01-M', 'status' => 1]
+            ['id' => 2, 'product_id' => 1, 'size' => 'Medium', 'price' => 1300, 'stock' => 4, 'sku' => 'GCT01-M', 'status' => 1]
         );
         \App\ProductsAttribute::factory()->create(
-            ['id' => 3, 'product_id' => 1, 'size' => 'Large', 'price' => 1400, 'stock' => 10, 'sku' => 'GCT01-L', 'status' => 1]
+            ['id' => 3, 'product_id' => 1, 'size' => 'Large', 'price' => 1400, 'stock' => 6, 'sku' => 'GCT01-L', 'status' => 1]
         );
         \App\ProductsAttribute::factory()->create(
-            ['id' => 4, 'product_id' => 2, 'size' => 'Small', 'price' => 1250, 'stock' => 10, 'sku' => 'BFT01-S', 'status' => 1]
+            ['id' => 4, 'product_id' => 2, 'size' => 'Small', 'price' => 1250, 'stock' => 8, 'sku' => 'BFT01-S', 'status' => 1]
         );
         \App\ProductsAttribute::factory()->create(
-            ['id' => 5, 'product_id' => 2, 'size' => 'Medium', 'price' => 1400, 'stock' => 25, 'sku' => 'BFT01-M', 'status' => 1]
+            ['id' => 5, 'product_id' => 2, 'size' => 'Medium', 'price' => 1400, 'stock' => 10, 'sku' => 'BFT01-M', 'status' => 1]
         );
         \App\ProductsAttribute::factory()->create(
-            ['id' => 6, 'product_id' => 2, 'size' => 'Large', 'price' => 1550, 'stock' => 20, 'sku' => 'BFT01-L', 'status' => 1]
+            ['id' => 6, 'product_id' => 2, 'size' => 'Large', 'price' => 1550, 'stock' => 2, 'sku' => 'BFT01-L', 'status' => 1]
         );
         \App\ProductsAttribute::factory()->create(
-            ['id' => 7, 'product_id' => 2, 'size' => 'Extra Large', 'price' => 1700, 'stock' => 15, 'sku' => 'BFT01-XL', 'status' => 1]
+            ['id' => 7, 'product_id' => 2, 'size' => 'Extra Large', 'price' => 1700, 'stock' => 4, 'sku' => 'BFT01-XL', 'status' => 1]
         );
         \App\ProductsAttribute::factory()->create(
-            ['id' => 8, 'product_id' => 3, 'size' => 'Small', 'price' => 1700, 'stock' => 15, 'sku' => 'BSD01-S', 'status' => 1]
+            ['id' => 8, 'product_id' => 3, 'size' => 'Small', 'price' => 1700, 'stock' => 6, 'sku' => 'BSD01-S', 'status' => 1]
         );
         \App\ProductsAttribute::factory()->create(
-            ['id' => 9, 'product_id' => 4, 'size' => 'Small', 'price' => 1900, 'stock' => 10, 'sku' => 'BGD01-S', 'status' => 1]
+            ['id' => 9, 'product_id' => 4, 'size' => 'Small', 'price' => 1900, 'stock' => 8, 'sku' => 'BGD01-S', 'status' => 1]
         );
         \App\ProductsAttribute::factory()->create(
-            ['id' => 10, 'product_id' => 5, 'size' => 'Small', 'price' => 1800, 'stock' => 20, 'sku' => 'GND01-S', 'status' => 1]
+            ['id' => 10, 'product_id' => 5, 'size' => 'Small', 'price' => 1800, 'stock' => 10, 'sku' => 'GND01-S', 'status' => 1]
         );
         \App\ProductsAttribute::factory()->create(
-            ['id' => 11, 'product_id' => 6, 'size' => 'Small', 'price' => 2000, 'stock' => 25, 'sku' => 'MWD01-S', 'status' => 1]
+            ['id' => 11, 'product_id' => 6, 'size' => 'Small', 'price' => 2000, 'stock' => 2, 'sku' => 'MWD01-S', 'status' => 1]
         );
 
         // PRODUCTS IMAGES

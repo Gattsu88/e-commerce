@@ -29,7 +29,7 @@
                     <input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text" value="{{ $userCartItem['quantity'] }}">
                     <button class="btn btnItemUpdate quantityMinus" data-cartid="{{ $userCartItem['id'] }}" type="button"><i class="icon-minus"></i></button>
                     <button class="btn btnItemUpdate quantityPlus" data-cartid="{{ $userCartItem['id'] }}" type="button"><i class="icon-plus"></i></button>
-                    <button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button>
+                    <button class="btn btnItemDelete btn-danger" data-cartid="{{ $userCartItem['id'] }}" type="button"><i class="icon-remove icon-white"></i></button>
                 </div>
             </td>
             <td>{{ $attrPrice['product_price'] }} rsd</td>
