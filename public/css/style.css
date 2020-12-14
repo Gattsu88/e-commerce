@@ -2,3 +2,8 @@ th, td {
     vertical-align: middle !important;
     text-align: center;
 }
+
+form.cmxform label.error, label.error {
+    color: red;
+    font-style: italic;
+}

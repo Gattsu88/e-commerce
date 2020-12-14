@@ -1,7 +1,4 @@
 $(document).ready(function() {
-    /*$("#sortProducts").on('change', function() {
-        this.form.submit();
-    });*/
 
     $.ajaxSetup({
         headers: {
@@ -196,5 +193,70 @@ $(document).ready(function() {
                 }
             });
         }        
+    });
+
+    // VALIDATE REGISTER FORM ON KEYUP AND SUBMIT
+    $("#registerForm").validate({
+        rules: {
+            name: "required",
+            mobile: {
+                required: true,
+                minlength: 10,
+                maxlength: 10,
+                digits: true
+            },
+            email: {
+                required: true,
+                email: true,
+                remote: "check-email"
+            },
+            password: {
+                required: true,
+                minlength: 6
+            }
+        },
+        messages: {
+            name: "Please enter your name",
+            mobile: {
+                required: "Please enter your mobile",
+                minlength: "Your mobile must consist of at least 10 characters",
+                maxlength: "Your mobile must consist of maximum 10 characters",
+                digits: "Please enter your valid mobile"
+            },
+            email: {
+                required: "Please enter your email",
+                email: "Please enter a valid email address",
+                remote: "Email already exists"
+            },
+            password: {
+                required: "Please choose your password",
+                minlength: "Your password must be at least 6 characters long"
+            }
+        }
+    });
+
+    // VALIDATE LOGIN FORM ON KEYUP AND SUBMIT
+    $("#loginForm").validate({
+        rules: {
+            email: {
+                required: true,
+                email: true,
+                remote: "check-email"
+            },
+            password: {
+                required: true,
+                minlength: 6
+            }
+        },
+        messages: {
+            email: {
+                required: "Please enter your email",
+                email: "Please enter a valid email address"
+            },
+            password: {
+                required: "Please enter your password",
+                minlength: "Your password must be at least 6 characters long"
+            }
+        }
     });
 });

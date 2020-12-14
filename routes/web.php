@@ -17,7 +17,7 @@
 
 use App\Category;
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -97,4 +97,11 @@ Route::namespace('Front')->group(function() {
     Route::get('cart', 'ProductController@cart');
     Route::post('update-cart-item-quantity', 'ProductController@updateCartItemQuantity');
     Route::post('delete-cart-item', 'ProductController@deleteCartItem');
+
+    // USERS
+    Route::get('login-register', 'UserController@loginRegister');
+    Route::post('register', 'UserController@registerUser');    
+    Route::post('login', 'UserController@loginUser');
+    Route::get('logout', 'UserController@logoutUser');
+    Route::match(['get', 'post'], 'check-email', 'UserController@checkEmail');
 });

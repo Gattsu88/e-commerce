@@ -8,7 +8,8 @@
         <li class="active"> SHOPPING CART</li>
     </ul>
     <h3>SHOPPING CART [ <small>3 Item(s) </small>]<a href="products.html" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>    
-    <hr class="soft"/>
+    <hr class="soft">
+    @if(!Auth::check())
     <table class="table table-bordered">
         <tr><th> I AM ALREADY REGISTERED  </th></tr>
          <tr> 
@@ -39,7 +40,8 @@
             </form>
           </td>
           </tr>
-    </table>        
+    </table> 
+    @endif       
     @if(Session::has('success_message'))
         <div class="alert alert-success" role="alert">
             {{ Session::get('success_message') }}

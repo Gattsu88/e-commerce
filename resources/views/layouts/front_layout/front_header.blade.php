@@ -5,10 +5,10 @@
 <div id="header">
     <div class="container">
         <div id="welcomeLine" class="row">
-            <div class="span6">Welcome!<strong> User</strong></div>
+            <div class="span6">Welcome!<strong> @if(Auth::check()){{ Auth::user()->name }} @else User @endif</strong></div>
             <div class="span6">
                 <div class="pull-right">
-                    <a href="product_summary.html"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> [ 3 ] Items in your cart </span> </a>
+                    <a href="{{ url('cart') }}"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> [ 3 ] Items in your cart </span></a>
                 </div>
             </div>
         </div>
@@ -51,8 +51,13 @@
                             </form>
                             <ul class="nav pull-right">
                                 <li><a href="#">Contact</a></li>
-                                <li class="divider-vertical"></li>
-                                <li><a href="#">Login</a></li>
+                                <li class="divider-vertical"></li>                                
+                                @if(Auth::check())
+                                <li><a href="{{ url('login-register') }}">My Account</a></li>
+                                <li><a href="{{ url('logout') }}">Logout</a></li>
+                                @else
+                                <li><a href="{{ url('login-register') }}">Login / Register</a></li>
+                                @endif
                             </ul>
                         </div><!-- /.nav-collapse -->
                     </div>
