@@ -7,24 +7,25 @@
         <li><a href="{{ url('/') }}">Home</a> <span class="divider">/</span></li>
         <li class="active"> SHOPPING CART</li>
     </ul>
-    <h3>SHOPPING CART [ <small>3 Item(s) </small>]<a href="products.html" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>    
+    <h3>SHOPPING CART [ <small>3 Item(s) </small>]<a href="products.html" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>
     <hr class="soft">
     @if(!Auth::check())
     <table class="table table-bordered">
         <tr><th> I AM ALREADY REGISTERED  </th></tr>
-         <tr> 
+         <tr>
          <td>
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="{{ url('login') }}" method="post" id="loginForm">
+                @csrf
                 <div class="control-group">
-                  <label class="control-label" for="inputUsername">Username</label>
+                  <label class="control-label" for="email">Email</label>
                   <div class="controls">
-                    <input type="text" id="inputUsername" placeholder="Username">
+                    <input type="email" class="span3" name="email" id="email" placeholder="Enter your email..">
                   </div>
                 </div>
                 <div class="control-group">
-                  <label class="control-label" for="inputPassword1">Password</label>
+                  <label class="control-label" for="password">Password</label>
                   <div class="controls">
-                    <input type="password" id="inputPassword1" placeholder="Password">
+                    <input type="password" class="span3" name="password" id="password" placeholder="Choose Your password..">
                   </div>
                 </div>
                 <div class="control-group">
@@ -40,8 +41,8 @@
             </form>
           </td>
           </tr>
-    </table> 
-    @endif       
+    </table>
+    @endif
     @if(Session::has('success_message'))
         <div class="alert alert-success" role="alert">
             {{ Session::get('success_message') }}
@@ -59,14 +60,14 @@
         </div>
     @endif
 
-    <div id="appendCartItems">     
+    <div id="appendCartItems">
         @include('front.products.cart_items')
-    </div>        
-        
+    </div>
+
     <table class="table table-bordered">
         <tbody>
             <tr>
-                <td> 
+                <td>
                 <form class="form-horizontal">
                     <div class="control-group">
                         <label class="control-label"><strong> VOUCHERS CODE: </strong> </label>
@@ -78,13 +79,13 @@
                 </form>
                 </td>
             </tr>
-            
+
         </tbody>
     </table>
-            
+
         <!--<table class="table table-bordered">
          <tr><th>ESTIMATE YOUR SHIPPING </th></tr>
-         <tr> 
+         <tr>
          <td>
             <form class="form-horizontal">
               <div class="control-group">
@@ -104,13 +105,13 @@
                   <button type="submit" class="btn">ESTIMATE </button>
                 </div>
               </div>
-            </form>               
+            </form>
           </td>
           </tr>
         </table>-->
     <a href="products.html" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
     <a href="login.html" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
-    
+
 </div>
 
 @endsection

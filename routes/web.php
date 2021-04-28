@@ -43,7 +43,7 @@ Route::prefix('/admin')->namespace('Admin')->group(function() {
         Route::match(['get', 'post'], 'add-edit-brand/{id?}', 'BrandController@addEditBrand');
         Route::post('update-brand-status', 'BrandController@updateBrandStatus');
         Route::get('delete-brand/{id}', 'BrandController@deleteBrand');
-		
+
         // CATEGORIES
 		Route::get('categories', 'CategoryController@categories');
         Route::post('update-category-status', 'CategoryController@updateCategoryStatus');
@@ -100,7 +100,7 @@ Route::namespace('Front')->group(function() {
 
     // USERS
     Route::get('login-register', 'UserController@loginRegister');
-    Route::post('register', 'UserController@registerUser');    
+    Route::post('register', 'UserController@registerUser');
     Route::post('login', 'UserController@loginUser');
     Route::get('logout', 'UserController@logoutUser');
     Route::match(['get', 'post'], 'check-email', 'UserController@checkEmail');

@@ -154,13 +154,13 @@ $(document).ready(function() {
                 alert("Item quantity must be at least 1.");
                 return false;
             } else {
-                newQuantity = parseInt(quantity) - 1;                
+                newQuantity = parseInt(quantity) - 1;
             }
         }
         if($(this).hasClass("quantityPlus")) {
             var quantity = $(this).prev().prev().val();
-            newQuantity = parseInt(quantity) + 1;   
-        }        
+            newQuantity = parseInt(quantity) + 1;
+        }
         var cartid = $(this).data("cartid");
         $.ajax({
             data:{"cartid":cartid,"quantity":newQuantity},
@@ -178,7 +178,7 @@ $(document).ready(function() {
     });
 
     // DELETE CART ITEM
-    $(document).on("click", ".btnItemDelete", function() {      
+    $(document).on("click", ".btnItemDelete", function() {
         var cartid = $(this).data("cartid");
         var result = confirm("Are you sure?");
         if(result) {
@@ -192,7 +192,7 @@ $(document).ready(function() {
                     alert("Error");
                 }
             });
-        }        
+        }
     });
 
     // VALIDATE REGISTER FORM ON KEYUP AND SUBMIT
@@ -241,7 +241,7 @@ $(document).ready(function() {
             email: {
                 required: true,
                 email: true,
-                remote: "check-email"
+                //remote: "check-email"
             },
             password: {
                 required: true,

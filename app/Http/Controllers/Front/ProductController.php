@@ -20,7 +20,7 @@ class ProductController extends Controller
     {
         Paginator::useBootstrap();
         if($request->ajax()) {
-            $data = $request->all();            
+            $data = $request->all();
             $url = $data['url'];
 
             $categoryCount = Category::where(['url' => $url, 'status' => 1])->count();
@@ -79,10 +79,10 @@ class ProductController extends Controller
             if($categoryCount > 0) {
                 $categoryDetails = Category::catDetails($url);
                 $categoryProducts = Product::with('brand')->whereIn('category_id', $categoryDetails['catIDs'])->where('status', 1)->paginate(6);
-                
+
                 // Product Filters
                 $productFilters = Product::productFilters();
-                
+
                 $fabricArray = $productFilters['fabricArray'];
                 $sleeveArray = $productFilters['sleeveArray'];
                 $patternArray = $productFilters['patternArray'];
@@ -95,7 +95,7 @@ class ProductController extends Controller
             } else {
                 abort(404);
             }
-        }     
+        }
     }
 
     public function productDetails($id)
@@ -116,7 +116,7 @@ class ProductController extends Controller
             $getDiscountedAttrPrice = Product::getDiscountedAttrPrice($data['product_id'], $data['size']);
             $getStock = ProductsAttribute::select('stock')->where(['product_id' => $data['product_id'], 'size' => $data['size']])->first()->toArray();
 
-            return [$getDiscountedAttrPrice, $getStock['stock']];           
+            return [$getDiscountedAttrPrice, $getStock['stock']];
         }
     }
 
@@ -124,10 +124,10 @@ class ProductController extends Controller
     {
         if($request->isMethod('post')) {
             $data = $request->all();
-            
+
             // CHECK FOR PRODUCT STOCK
             $getProductStock = ProductsAttribute::where(['product_id' => $data['product_id'], 'size' => $data['size']])->first()->toArray();
-            if($getProductStock['stock'] < $data['quantity']) {                
+            if($getProductStock['stock'] < $data['quantity']) {
                 $message = "Required Quantity is not available.";
                 Session::flash('error_message', $message);
                 return back();
@@ -146,16 +146,23 @@ class ProductController extends Controller
             } else {
                 $countProducts = Cart::where(['product_id' => $data['product_id'], 'size' => $data['size'], 'session_id' => Session::get('session_id')])->count();
             }
-            
+
             if($countProducts > 0) {
                 $message = "Product exists in Cart.";
                 Session::flash('error_message', $message);
                 return back();
             }
 
+            if(Auth::check()) {
+                $user_id = Auth::id();
+            } else {
+                $user_id = 0;
+            }
+
             // SAVE PRODUCT TO CART
             $cart = new Cart;
             $cart->session_id = $session_id;
+            $cart->user_id = $user_id;
             $cart->product_id = $data['product_id'];
             $cart->size = $data['size'];
             $cart->quantity = $data['quantity'];
@@ -220,7 +227,7 @@ class ProductController extends Controller
     {
         if($request->ajax()) {
             $data = $request->all();
-            Cart::where('id', $data['cartid'])->delete();            
+            Cart::where('id', $data['cartid'])->delete();
             $userCartItems = Cart::userCartItems();
             return response()->json([
                 'view' => (String)View::make('front.products.cart_items', compact('userCartItems'))
